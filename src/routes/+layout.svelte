@@ -5,7 +5,6 @@
 	import { caseFile } from '$lib/data/casefile';
 	import { hydrateProgressFromStorage } from '$lib/state/progressStore';
 	import BottomNav from '$lib/components/BottomNav.svelte';
-	import ParentUnlockBar from '$lib/components/ParentUnlockBar.svelte';
 	import ProgressHeader from '$lib/components/ProgressHeader.svelte';
 
 	let { children } = $props();
@@ -35,16 +34,5 @@
 >
 	<ProgressHeader />
 	{@render children()}
-	<div class="layout-footer-wrap">
-		<ParentUnlockBar />
-	</div>
 	<BottomNav />
 </div>
-
-<style>
-	.layout-footer-wrap {
-		max-width: 1120px;
-		margin: 0 auto;
-		padding: 0 1rem 0.25rem;
-	}
-</style>

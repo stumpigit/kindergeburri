@@ -1,5 +1,6 @@
 <script>
 	import { caseFile } from '$lib/data/casefile';
+	import ParentUnlockBar from '$lib/components/ParentUnlockBar.svelte';
 	import { progress } from '$lib/state/progressStore';
 	import { getEvidenceStats, getSolvedPreludeCount } from '$lib/state/progress';
 
@@ -56,6 +57,10 @@
 		</div>
 
 		<span class="progress-header__pct" aria-hidden="true">{pct}%</span>
+
+		<div class="progress-header__parent">
+			<ParentUnlockBar variant="header" />
+		</div>
 	{/if}
 </header>
 
@@ -168,5 +173,11 @@
 		min-width: 2.25rem;
 		text-align: right;
 		letter-spacing: 0.02em;
+	}
+
+	.progress-header__parent {
+		position: relative;
+		flex-shrink: 0;
+		align-self: center;
 	}
 </style>

@@ -36,74 +36,54 @@
 <main class="page-main stack">
 
 	<section class="panel grain-overlay">
+		<div
+			class="teaser-img"
+			style={`background-image:url(${caseFile.visuals.fragmentsUrl})`}
+			role="img"
+			aria-label="Collage aus Aktenfragmenten"
+		></div>
 		<h2>{caseFile.invitation.headline}</h2>
-		<p class="muted">So läuft der Link für alle Ermittlerinnen:</p>
+		<p class="muted">
+			Herzliche Gratulation! Du wurdest erfolgreich im Ermittlungsteam aufgenommen. Folgende Aufgaben
+			stehen an:
+		</p>
 		<ol class="flow">
-			<li>Vor dem Geburtstag: drei kurze Codes lösen.</li>
+			<li>Vor dem Geburtstag: drei kurze Codes lösen</li>
 			<li>Einladungsdetails werden automatisch freigeschaltet.</li>
 			<li>Am Geburtstag: gemeinsam den Gruppencode eingeben und die Akte öffnen.</li>
 		</ol>
 	</section>
 
-	<section class="grid-two">
-		<article class="panel grain-overlay">
-			<h3 class="h3-title">Team auf der Akte</h3>
-			<p class="muted small">Optional – hilft beim gemeinsamen Spiel auf einem Gerät.</p>
-			<label class="field">
-				<span>Teamname</span>
-				<input class="input" bind:value={teamNameInput} autocomplete="off" />
-			</label>
-			<label class="field">
-				<span>Codename</span>
-				<input class="input" bind:value={codenameInput} autocomplete="off" />
-			</label>
-			<div class="row">
-				<button type="button" class="btn secondary" onclick={saveTeam}>Speichern</button>
-				{#if statusMessage}
-					<span class="feedback feedback--ok">{statusMessage}</span>
-				{/if}
-			</div>
-		</article>
-
-		<article class="panel teaser-card grain-overlay">
-			<div
-				class="teaser-img"
-				style={`background-image:url(${caseFile.visuals.fragmentsUrl})`}
-				role="img"
-				aria-label="Collage aus Aktenfragmenten"
-			></div>
-			<h3 class="h3-title">Einladungspaket</h3>
-			<ul class="kit">
-				{#each caseFile.invitationKit as item}
-					<li>{item}</li>
-				{/each}
-			</ul>
-			<a class="btn" href="/einladung">Zur Einladung</a>
-		</article>
-	</section>
-
 	{#if $parentMode}
-		<section class="panel grain-overlay">
-			<h3 class="h3-title">Material-Hinweise (nur Eltern)</h3>
-			<div class="asset-grid">
-				{#each Object.values(caseFile.imagePlaceholders) as asset}
-					<article class="paper asset-card">
-						<h4>{asset.title}</h4>
-						<p>{asset.description}</p>
-						<code>{asset.envatoKeywords}</code>
-					</article>
-				{/each}
-			</div>
-		</section>
-	{/if}
+		<details class="organizer-details panel grain-overlay">
+			<summary class="organizer-details__summary">
+				<span class="organizer-details__label">Für Erwachsene</span>
+				<span class="organizer-details__hint">Materialhinweise · Neustart</span>
+			</summary>
+			<div class="organizer-details__body">
+				<section class="organizer-details__section">
+					<h3 class="h3-title">Material-Hinweise (nur Eltern)</h3>
+					<div class="asset-grid">
+						{#each Object.values(caseFile.imagePlaceholders) as asset}
+							<article class="paper asset-card">
+								<h4>{asset.title}</h4>
+								<p>{asset.description}</p>
+								<code>{asset.envatoKeywords}</code>
+							</article>
+						{/each}
+					</div>
+				</section>
 
-	<section class="panel danger-zone grain-overlay">
-		<h3 class="h3-title">Neustart</h3>
-		<p class="muted small">
-			Löscht den gespeicherten Fortschritt in diesem Browser (neues Team auf demselben Gerät).
-		</p>
-		<button type="button" class="btn secondary" onclick={reset}>Fortschritt zurücksetzen</button>
-	</section>
+				<section class="panel danger-zone grain-overlay organizer-details__section">
+					<h3 class="h3-title">Neustart</h3>
+					<p class="muted small">
+						Löscht den gespeicherten Fortschritt in diesem Browser (neues Team auf demselben Gerät).
+					</p>
+					<button type="button" class="btn secondary" onclick={reset}>Fortschritt zurücksetzen</button>
+				</section>
+			</div>
+		</details>
+	{/if}
 </main>
 
 <style>
@@ -113,13 +93,6 @@
 		display: grid;
 		gap: 0.35rem;
 		color: var(--text-dim);
-	}
-
-	.grid-two {
-		display: grid;
-		gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		align-items: start;
 	}
 
 	.h3-title {
@@ -132,21 +105,50 @@
 		margin: 0 0 0.75rem;
 	}
 
-	.field {
-		display: grid;
-		gap: 0.35rem;
-		margin-bottom: 0.65rem;
-		font-size: 0.82rem;
-		font-weight: 800;
-		color: var(--text-dim);
+	.organizer-details {
+		border-style: dashed;
+		border-color: rgba(255, 255, 255, 0.14);
 	}
 
-	.row {
+	.organizer-details__summary {
+		cursor: pointer;
+		list-style: none;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.6rem;
-		align-items: center;
-		margin-top: 0.35rem;
+		align-items: baseline;
+		gap: 0.5rem 1rem;
+		padding: 0.15rem 0;
+		font-weight: 800;
+		letter-spacing: 0.02em;
+	}
+
+	.organizer-details__summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.organizer-details__label {
+		color: var(--text-dim);
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	.organizer-details__hint {
+		color: var(--muted);
+		font-size: 0.88rem;
+		font-weight: 600;
+	}
+
+	.organizer-details__body {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border);
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.organizer-details__section.danger-zone {
+		margin-bottom: 0;
 	}
 
 	.teaser-img {
@@ -156,14 +158,6 @@
 		background-position: center;
 		border: 1px solid var(--border);
 		margin-bottom: 0.75rem;
-	}
-
-	.kit {
-		margin: 0 0 1rem;
-		padding-left: 1.1rem;
-		color: var(--text-dim);
-		display: grid;
-		gap: 0.35rem;
 	}
 
 	.asset-grid {

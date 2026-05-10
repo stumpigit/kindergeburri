@@ -1,18 +1,18 @@
 export const caseFile = {
 	id: 'akte-17',
-	title: 'Akte Zimmerwald – Das Foto ohne Namen',
-	subtitle: 'Interaktive Vorermittlung & Einsatzakte · Region Bern',
+	title: 'Akte-17 – Das Foto ohne Namen',
+	subtitle: 'Akte bisher ungelöst.',
 	setting: {
 		historicPeriod: 'Fiktiver Cold Case mit historischem Look',
-		location: 'Region Bern',
+		location: 'Region Zimmerwald',
 		now: 'Heute'
 	},
 	invitation: {
 		headline: 'Du bist offiziell im Ermittlerinnen-Team.',
 		message:
-			'Vor dem Geburtstag startet eine geheime Vorermittlung. Mit der Einladung kommt nur ein Fragment. Alles Weitere wird online entschlüsselt.',
+			'',
 		tagline:
-			'Löse drei Code-Rätsel, schalte die Einladung frei und öffne am Geburtstag als Gruppe die Einsatzakte.'
+			'Die Akte kann nur betrachtet werden, wenn die drei Vorrätsel erfolgreich gelöst sind.'
 	},
 	visuals: {
 		/** Dunkles zerknülltes Papier – globaler UI-Hintergrund (WebP) */
