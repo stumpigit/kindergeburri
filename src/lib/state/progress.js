@@ -66,10 +66,12 @@ export function createDefaultProgress(caseFile) {
 
 	return {
 		version: 1,
-		missionUnlocked: false,
-		finaleUnlocked: false,
 		teamName: '',
 		codename: '',
+		missionUnlocked: false,
+		investigationUnlocked: false,
+		groupLoginAttempts: 0,
+		finaleUnlocked: false,
 		evidence,
 		suspects,
 		prelude,
@@ -98,20 +100,28 @@ export function mergeProgress(base, incoming) {
 		merged.missionUnlocked = incoming.missionUnlocked;
 	}
 
+	if (typeof incoming.teamName === 'string') {
+		merged.teamName = incoming.teamName;
+	}
+
+	if (typeof incoming.codename === 'string') {
+		merged.codename = incoming.codename;
+	}
+
+	if (typeof incoming.investigationUnlocked === 'boolean') {
+		merged.investigationUnlocked = incoming.investigationUnlocked;
+	}
+
+	if (typeof incoming.groupLoginAttempts === 'number' && Number.isFinite(incoming.groupLoginAttempts)) {
+		merged.groupLoginAttempts = incoming.groupLoginAttempts;
+	}
+
 	if (typeof incoming.finaleUnlocked === 'boolean') {
 		merged.finaleUnlocked = incoming.finaleUnlocked;
 	}
 
 	if (typeof incoming.finalCodeAttempts === 'number' && Number.isFinite(incoming.finalCodeAttempts)) {
 		merged.finalCodeAttempts = incoming.finalCodeAttempts;
-	}
-
-	if (typeof incoming.teamName === 'string') {
-		merged.teamName = incoming.teamName.slice(0, 60);
-	}
-
-	if (typeof incoming.codename === 'string') {
-		merged.codename = incoming.codename.slice(0, 40);
 	}
 
 	if (incoming.evidence && typeof incoming.evidence === 'object') {

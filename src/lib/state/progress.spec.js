@@ -17,16 +17,16 @@ const mockCase = {
 
 describe('normalizeAnswer', () => {
 	it('normalisiert Eingaben robust', () => {
-		expect(normalizeAnswer(' Zímmer-Wald! ')).toBe('zimmerwald');
+		expect(normalizeAnswer(' Äkté-17! ')).toBe('akte17');
 		expect(normalizeAnswer('')).toBe('');
 	});
 });
 
 describe('checkAnswer', () => {
 	it('akzeptiert alternative Schreibweisen', () => {
-		expect(checkAnswer('Kehrsatz', ['KEHRSATZ', 'Kehrsatz'])).toBe(true);
-		expect(checkAnswer('Kehr satz', ['Kehrsatz'])).toBe(true);
-		expect(checkAnswer('Bern', ['Kehrsatz'])).toBe(false);
+		expect(checkAnswer('Post', ['POST', 'Post'])).toBe(true);
+		expect(checkAnswer('Po st', ['Post'])).toBe(true);
+		expect(checkAnswer('Archiv', ['Post'])).toBe(false);
 	});
 });
 
@@ -55,8 +55,8 @@ describe('mergeProgress', () => {
 	it('übernimmt bekannte ids und ignoriert unbekannte', () => {
 		const base = createDefaultProgress(mockCase);
 		const merged = mergeProgress(base, {
-			teamName: 'Team Morgenstern',
-			codename: 'Nebelfuchs',
+			investigationUnlocked: true,
+			groupLoginAttempts: 2,
 			evidence: {
 				e1: { found: true, analyzed: true, notes: 'gefunden' },
 				e999: { found: true }
@@ -67,8 +67,8 @@ describe('mergeProgress', () => {
 			}
 		});
 
-		expect(merged.teamName).toBe('Team Morgenstern');
-		expect(merged.codename).toBe('Nebelfuchs');
+		expect(merged.investigationUnlocked).toBe(true);
+		expect(merged.groupLoginAttempts).toBe(2);
 		expect(merged.evidence.e1.found).toBe(true);
 		expect(merged.evidence.e2.found).toBe(false);
 		expect(merged.suspects.s1.suspicion).toBe(4);

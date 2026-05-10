@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'akte-zimmerwald-progress-v1';
+const STORAGE_KEY = 'akte-17-progress-v1';
 
 /**
  * @returns {any | null}

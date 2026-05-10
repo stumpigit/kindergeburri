@@ -23,6 +23,19 @@ Am Geburtstag selbst geht die Story in den Vollmodus:
 - Svelte 5 (Runes)
 - Vitest (Unit-Tests)
 - Docker + Docker Compose
+- Schriften: Google Fonts (beim ersten Laden eine kurze Internetverbindung nötig; danach Browser-Cache)
+
+---
+
+## Bilder komprimieren
+
+Nach neuen JPG-Lieferungen in `static/images/` die WebP-Ziele neu erzeugen:
+
+```bash
+npm run images:optimize
+```
+
+Konfiguration der Zuordnung Quelle → Zieldatei: [scripts/optimize-images.mjs](scripts/optimize-images.mjs). Die App nutzt die `.webp`-Dateien aus [src/lib/data/casefile.js](src/lib/data/casefile.js).
 
 ---
 
@@ -77,12 +90,23 @@ webapp/
 │   ├── app.css
 │   ├── routes/
 │   │   ├── +layout.svelte
-│   │   └── +page.svelte
+│   │   ├── +page.svelte              # Start · Überblick
+│   │   ├── einladung/+page.svelte   # Rätsel + Einladung (eine Seite)
+│   │   ├── einsatz/+page.svelte     # Akte · Verdacht · Board
+│   │   ├── finale/+page.svelte      # Finalcode (nach Gruppencode)
+│   │   ├── vorab/                   # Redirect → /einladung
+│   │   └── briefing/                # Redirect → /einladung
 │   └── lib/
+│       ├── components/               # UI-Bausteine
 │       ├── data/casefile.js
 │       ├── state/progress.js
+│       ├── state/progressStore.js    # UI-Aktionen + Speicher
 │       ├── state/progress.spec.js
-│       └── state/storage.js
+│       ├── state/storage.js
+│       └── state/parentModeStore.js
+├── scripts/
+│   └── optimize-images.mjs           # JPG → WebP (npm run images:optimize)
+├── static/images/                    # Roh-JPG optional; produktive WebPs für die UI
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .dockerignore
@@ -93,31 +117,20 @@ webapp/
 
 ## Inhaltliche Bereiche der App
 
-1. **Einladung**
-   - Story-Intro
-   - Geburtstagsbriefing
-   - Mitbringen-Liste
+1. **Einladung** (`/einladung`)
+   - drei Vorab-Rätsel, danach Erfolgsmeldung und Geburtstagsbriefing
 
-2. **Vorermittlung**
-   - 3 Rätsel
-   - Freischaltung der operativen Akte nach 2 gelösten Rätseln
-
-3. **Akte**
+2. **Akte** (`/einsatz`)
    - Beweisliste
    - Fund-/Analyse-Status
    - Notizen pro Beweis
 
-4. **Verdachtstafel**
-   - Verdachtsgrad pro Figur (1–5)
-   - Teamnotizen
+3. **Verdachtstafel** (Tab in Einsatz)
 
-5. **Zeitstrahl**
-   - Events werden anhand analysierter Beweise freigeschaltet
+4. **Zeitstrahl** (Tab in Einsatz)
 
-6. **Finale**
-   - Finalcode-Eingabe
-   - Outdoor-Missionsanweisung
-   - Auflösung für Spielleitung
+5. **Finale** (`/finale`, nach Gruppencode)
+   - Finalcode, Outdoor-Hinweis, Auflösung für Spielleitung
 
 ---
 
@@ -161,7 +174,7 @@ Bereich:
 - Der Fortschritt wird lokal im Browser gespeichert (`localStorage`).
 - Für mehrere Teams auf einem Gerät: vor neuem Durchlauf "Fortschritt zurücksetzen" klicken.
 - Für Versand vorab könnt ihr den Link schon schicken mit dem Hinweis:
-  - "Löst mindestens zwei Vorermittlungs-Rätsel vor dem Geburtstag."
+  - "Löst alle drei Vorermittlungs-Rätsel vor dem Geburtstag."
 
 ---
 
