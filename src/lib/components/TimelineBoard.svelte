@@ -2,20 +2,19 @@
 	import { caseFile } from '$lib/data/casefile';
 	import { progress } from '$lib/state/progressStore';
 	import { isTimelineEventUnlocked } from '$lib/state/progress';
-	import { writable } from 'svelte/store';
 
-	// Store für die Eingaben der Kinder
-	export let answers = writable({});
+	// Lokaler State für die Eingaben der Kinder (Svelte 5 Runes)
+	let answers = $state({});
 
 	// Funktion zum Aktualisieren der Antworten
-	export function updateAnswer(eventId, field, value) {
-		answers.update(current => ({
-			...current,
-			[eventId]: {
-				...(current[eventId] || {}),
-				[field]: value
-			}
-		}));
+	function updateAnswer(eventId, field, value) {
+		if (!answers[eventId]) {
+			answers[eventId] = {};
+		}
+		answers[eventId] = {
+			...answers[eventId],
+			[field]: value
+		};
 	}
 </script>
 
@@ -54,8 +53,8 @@
 											class="letter-input"
 											maxlength="1"
 											placeholder="?"
-											value="{($answers[event.id]?.letters?.[index] || '')}"
-											on:input={(e) => updateAnswer(event.id, 'letters', { ...($answers[event.id]?.letters || {}), [index]: e.target.value })}
+											value={answers[event.id]?.letters?.[index] || ''}
+											oninput={(e) => updateAnswer(event.id, 'letters', { ...(answers[event.id]?.letters || {}), [index]: e.target.value })}
 										/>
 									{/each}
 								</div>
@@ -63,6 +62,15 @@
 								<!-- Hinweis für die Reihenfolge -->
 								<div class="order-hint">
 									<p><strong>Hinweis:</strong> Trage die Buchstaben ein und finde die richtige Reihenfolge!</p>
+								</div>
+								
+								<!-- Statusanzeige -->
+								<div class="word-status">
+									{#if answers[event.id]?.letters && Object.values(answers[event.id].letters).every(letter => letter !== '')}
+										<p class="status-success">✅ Alle Buchstaben eingetragen!</p>
+									{:else}
+										<p class="status-pending">⚠️ Bitte alle Buchstaben eingeben</p>
+									{/if}
 								</div>
 							</div>
 						{/if}
@@ -75,20 +83,9 @@
 								<textarea 
 									class="question-input"
 									placeholder="Deine Antwort..."
-									value="{($answers[event.id]?.answer || '')}"
-									on:input={(e) => updateAnswer(event.id, 'answer', e.target.value)}
+									value={answers[event.id]?.answer || ''}
+									oninput={(e) => updateAnswer(event.id, 'answer', e.target.value)}
 								></textarea>
-							</div>
-						{/if}
-						
-						<!-- Statusanzeige -->
-						{#if event.word}
-							<div class="word-status">
-								{#if $answers[event.id]?.letters && Object.values($answers[event.id].letters).every(letter => letter !== '')}
-									<p class="status-success">Alle Buchstaben eingetragen!</p>
-								{:else}
-									<p class="status-pending">Bitte alle Buchstaben eingeben</p>
-								{/if}
 							</div>
 						{/if}
 					{:else}

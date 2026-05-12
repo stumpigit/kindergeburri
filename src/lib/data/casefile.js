@@ -2,205 +2,183 @@ export const caseFile = {
 	id: 'akte-zimmerwald',
 	title: 'Akte Zimmerwald – Das Foto ohne Namen',
 	subtitle:
-		'Kinderkrimi mit Vorermittlung (3 Codes) und Einsatzakte (Beweise + Board + Finale am Teich)',
+		'Kinderkrimi mit Vorermittlung (Rätsel) und Einsatzakte (Beweise + Board + Finale am Teich)',
 	setting: {
-		historicPeriod: 'Fiktiver Cold Case mit historischem Look',
-		location: 'Region Zimmerwald (bei Bern)',
+		historicPeriod: 'Juli 1968 (Cold Case)',
+		location: 'Zimmerwald (BE)',
 		now: 'Heute'
 	},
 	invitation: {
-		headline: 'Du bist offiziell im Ermittlerinnen-Team.',
-		message: '',
+		headline: 'Willkommen im Ermittler-Team.',
+		message: 'Ihr wurdet ausgewählt, um einen Fall aus dem Jahr 1968 zu lösen.',
 		tagline:
-			'Die Akte kann erst vollständig betrachtet werden, wenn ihr die drei Vorrätsel gelöst habt.'
+			'Löst zuerst die drei Vorrätsel, um die Details für den Einsatztag freizuschalten.'
 	},
 	visuals: {
-		/** Dunkles zerknülltes Papier – globaler UI-Hintergrund (WebP) */
 		darkPaperBgUrl: '/images/black-paper-bg.webp',
-		/** Schreibtisch / Cold-Case – grosses Hero (WebP aus scripts/optimize-images.mjs) */
 		heroDeskUrl: '/images/hero-historical.png',
-		/** Helle Papierkörnung – auf Belegkarten (.paper) */
 		paperGrainUrl: '/images/paper-grain-light.webp',
-		/** Archiv / Katalog – zweites Bild im Hero */
 		heroCardUrl: '/images/hero-archive.png',
-		/** Beweise / Tisch – Einladungspaket-Kachel */
 		fragmentsUrl: '/images/fragments-evidence.webp'
-	},
-	imagePlaceholders: {
-		hero: {
-			title: 'Hero-Bild (Startseite)',
-			description:
-				'Dunkler Holztisch mit alter Fallmappe, Lupe, Briefsiegel, Taschenlampe und Notizzetteln; kinotaugliches Licht, hochwertiger Editorial-Look, keine Personen.',
-			envatoKeywords:
-				'detective desk vintage evidence board envelope wax seal magnifying glass cinematic lighting'
-		},
-		fragmentA1: {
-			title: 'Beleg A1 (Fragment)',
-			description:
-				'Nahaufnahme eines vergilbten Papiers mit ausgerissenem Rand, Schreibmaschinenfont und handschriftlichen Randmarken (nur als Design-Placeholder).',
-			envatoKeywords:
-				'old paper torn edge typewriter text vintage document texture scan'
-		},
-		preludeBanner: {
-			title: 'Banner Vorermittlung',
-			description:
-				'Stylischer Ermittlungsraum mit Pinnwand, roten Fäden, Karte und Poststempel-Details, ohne lesbaren Plottext.',
-			envatoKeywords:
-				'detective board red string map stamps mystery room no people'
-		}
 	},
 	parentMode: {
 		accessCode: 'eltern-briefing-17',
 		accepted: ['eltern-briefing-17', 'parent17', 'briefing17']
 	},
 	invitationKit: [
-		'Einladungskarte mit Link oder QR-Code',
-		'Beleg A1 als einzelnes Fragment (nur 1 Teil)',
-		'Mini-Regelkarte: „3 Codes lösen = Einladung freischalten“',
-		'Optional: kleines Detektiv-Gadget (Sticker, Büroklammer, Mini-Lupe)'
+		'Einladungskarte mit QR-Code',
+		'Dossier-Fragment A1',
+		'Detektiv-Ausweis (Platzhalter)',
+		'Optional: Kleine Lupe'
 	],
 	birthdayBriefing: {
 		dateLabel: 'Einsatztag',
-		dateValue: 'Samstag, 17. Mai, 13:30–17:30 (bei Bedarf anpassen)',
-		meetingPoint: 'Treffpunkt bei Familie Suter zu Hause (Startmappe)',
-		dresscode: 'Wetterfeste Kleidung, bequeme Schuhe, optional dunkle Jacke',
-		bringAlong: ['Neugier', 'Teamgeist', 'Scharfe Augen', 'Optional: Notizheft'],
+		dateValue: 'Samstag, 12. Mai 2026, 14:00 Uhr',
+		meetingPoint: 'Treffpunkt bei Christoph Suter (Hauptquartier)',
+		dresscode: 'Wetterfest, gute Schuhe für die Ermittlung im Freien.',
+		bringAlong: ['Gute Augen', 'Logik', 'Teamwork'],
 		unlockNote:
 			'Diese Informationen werden erst sichtbar, wenn alle drei Vorrätsel korrekt gelöst sind.'
 	},
 	prelude: {
 		intro:
-			'Du startest mit einem einzelnen Beleg-Fragment. Löse drei unterschiedliche Code-Rätsel, um die Einladung vollständig freizuschalten.',
+			'Sammelt die Hinweise auf der Webseite und löst die Rätsel, um die Einsatzdaten zu erhalten.',
 		puzzles: [
 			{
 				id: 'p1',
-				title: 'Rätsel 1 – Acrostic',
-				hint:
-					'Nimm pro Zeile den ersten Buchstaben und lies das Wort.',
-				question: 'Welches Wort ergibt sich aus dem Acrostic?',
-				answers: ['Archiv'],
-				source: 'Beleg A1 (Einladungsfragment)'
+				title: 'Rätsel 1 – Verschlüsselung',
+				hint: 'Caesar-Verschiebung um 3 Stellen: A wird zu D, B wird zu E...',
+				question: 'Was bedeutet "KDLQ Brx"?',
+				answers: ['Hallo du'],
+				source: 'Webseite'
 			},
 			{
 				id: 'p2',
-				title: 'Rätsel 2 – Zahlencode 19-16-21-18',
-				hint:
-					'A=1, B=2, C=3 ...',
-				question: 'Welches Lösungswort ergibt der Zahlencode?',
-				answers: ['Spur'],
-				source: 'Notiz A2 (Codezeile)'
+				title: 'Rätsel 2 – Die Zahlenfolge',
+				hint: '1, 1, 2, 3, 5, 8, ... jede Zahl ist die Summe der beiden vorherigen.',
+				question: 'Welche Zahl kommt als Nächstes?',
+				answers: ['13'],
+				source: 'Webseite'
 			},
 			{
 				id: 'p3',
-				title: 'Rätsel 3 – Spiegelnotiz',
-				hint:
-					'Lies die Notiz rückwärts.',
-				question: 'Welcher Ort wird genannt?',
-				answers: ['Post', 'Bei der Post'],
-				source: 'Notiz A3 (gespiegelte Zeile)'
+				title: 'Rätsel 3 – Bilderrätsel',
+				hint: 'Schaut euch das Bild genau an. Die Pfeile zeigen auf Buchstaben.',
+				question: 'Welches Wort ist gesucht?',
+				answers: ['Einladung'],
+				source: 'Webseite'
 			}
 		],
 		teasers: [
 			{
 				id: 'teaser1',
-				title: 'Beleg A1 – Fragment',
-				text:
-					'Ankunft im Dämmerlicht.\nRänder des Dokuments fehlen.\nCodewörter wurden markiert.\nHinweise liegen zwischen den Zeilen.\nIn den Akten steckt mehr.\nVerdächtige Spuren bleiben offen.',
+				title: 'Verschlüsselter Hinweis',
+				text: 'KDLQ Brx (Verschiebung 3)',
 				supportsPuzzleId: 'p1'
 			},
 			{
 				id: 'teaser2',
-				title: 'Beleg A2 – Codezeile',
-				text: 'Randnotiz: „Schlüsselwort: 19-16-21-18“',
+				title: 'Das Muster',
+				text: '1, 1, 2, 3, 5, 8, ?',
 				supportsPuzzleId: 'p2'
 			},
 			{
 				id: 'teaser3',
-				title: 'Beleg A3 – Spiegelnotiz',
-				text: '"tsoP red ieb"',
+				title: 'Der Bild-Code',
+				text: 'Ein Bild mit versteckten Buchstaben (Lösung: Einladung)',
 				supportsPuzzleId: 'p3'
 			}
 		],
 		gmNotes: [
-			'Beste Wirkung: A1 als Papierbeilage versenden, A2/A3 nur online zeigen.',
-			'Für hochwertige Optik die Belege als „gescannte Aktenfetzen“ gestalten.',
-			'Optional: QR-Code erst auf Rückseite oder unter Rubbelsticker platzieren.'
+			'Stelle sicher, dass die Kinder die Rätsel selbst lösen.',
+			'Die Belohnung sind die Einladungsdetails.'
 		]
 	},
 
-	/**
-	 * Einsatzakte – Beweise (E1–E5)
-	 */
 	evidence: [
 		{
 			id: 'e1',
 			name: 'Beweis E1 – Foto ohne Namen',
 			type: 'Foto',
-			locationHint: 'Archivmappe Zimmerwald',
+			imageUrl: '/images/E1_Fotoohne-Namen.png',
+			locationHint: 'Ermittler-Mappe',
 			summary:
-				'Ein altes Gruppenfoto: Eine Person wurde nachträglich entfernt. Die Rand-Lücke ist rechteckig. Zusätzlich steht am Rand „MAX. 6“.',
+				'Ein altes Klassenfoto. Eine Person fehlt. In der linken oberen Ecke ist der Buchstabe "I" markiert.',
 			archiveText:
-				"RÄTSEL E1 (Teamaufgabe):\n1) Anfangsbuchstaben lesen (D/R/E/I) → Wort = DREI → richtiger Timeline-Slot = Slot 3.\n2) „MAX. 6“: Suche in der Verdächtigenliste die Person, deren Name mit MAX beginnt → trage ihre ID ins Board ein.\n3) Kartenaktion: Lege die Ereigniskarte „FOTO“ in Slot 3.\n\n[HILFE FÜR ERMITTLER]:\n* Hängt das Foto an der Fotowand, sucht den rechteckigen Rahmen.\n* Zählt die Personen im Foto – fehlt jemand? Welche Form hat die Lücke?",
-			tags: ['foto', 'lücke', 'falschspur', 'max']
+				"Tragt den Buchstaben 'I' im Ermittlungsboard unter FOTO ein. Wer könnte auf diesem Foto fehlen?",
+			tags: ['foto', 'I']
 		},
 		{
 			id: 'e2',
-			name: 'Beweis E2 – Brieffragment an die Gemeinde',
+			name: 'Beweis E2 – Brieffragment',
 			type: 'Brief',
-			locationHint: 'Handschriftlicher Brief / Aktenfach',
+			imageUrl: '/images/E2-brieffragment.png',
+			locationHint: 'Ermittler-Mappe',
 			summary:
-				'Ein Briefausschnitt: Er erklärt, warum die Schul-Sache noch nicht öffentlich werden darf – und enthält eine Spur zum Garten.',
+				'Ein Brief, der die Pläne für die Schulschliessung erwähnt. Der Buchstabe "T" ist farbig hervorgehoben.',
 			archiveText:
-				"RÄTSEL E2 (Teamaufgabe):\n1) Acrostic lesen → Wort ergibt Slot 1.\n2) Kartenaktion: Lege die Ereigniskarte „BRIEF“ in Slot 1.\n3) Gartenhinweis: „Stein & Baum“ → Zwei Suchwörter. Später im Garten findet ihr Beweis E5.",
-			tags: ['brief', 'garten', 'stein', 'baum', 'spur']
+				"Tragt den Buchstaben 'T' im Ermittlungsboard unter POST ein. Der Brief gibt auch einen ersten Hinweis auf einen Fundort im Garten.",
+			tags: ['brief', 'T']
 		},
 		{
 			id: 'e3',
-			name: 'Beweis E3 – Zeit-/Amtsprotokoll mit Stempel „HM“',
-			type: 'Stempel / Protokoll',
-			locationHint: 'Vermerk in der Akte',
+			name: 'Beweis E3 – Zeitprotokoll',
+			type: 'Dokument',
+			imageUrl: '/images/E3_Protokoll.png',
+			locationHint: 'Ermittler-Mappe',
 			summary:
-				'In einem Protokoll-Auszug fehlt ein Satzteil. Am Rand ist ein runder Stempel deutlich sichtbar: „HM“.',
+				'In diesem Protokoll ist der Buchstabe "E" markiert. Der Stempel „HM“ (Heinz Müller) findet sich am Rand.',
 			archiveText:
-				"RÄTSEL E3 (Teamaufgabe):\n1) Acrostic lesen → Wort ergibt Slot 2.\n2) Kartenaktion: Lege die Ereigniskarte „STEMPEL“ in Slot 2.\n3) HM → Täter-Check: Vorname beginnt mit H und Nachname endet mit M → Täter-ID = S1.\n4) Tragt die Täter-ID in das Board-Feld „Täter (aus Slot 2)“ ein.",
-			tags: ['protokoll', 'stempel', 'hm', 'täter']
+				"Tragt den Buchstaben 'E' im Ermittlungsboard unter PROTOKOLL ein. Achtet auf die Unterschriften und Stempel.",
+			tags: ['protokoll', 'E', 'HM']
 		},
 		{
 			id: 'e4',
-			name: 'Beweis E4 – Lageplan/Adresse (Zimmerwald → Kehrsatz)',
-			type: 'Adresse / Karte',
-			locationHint: 'Route/Adressnotiz in der Akte',
+			name: 'Beweis E4 – Lageplan',
+			type: 'Karte',
+			imageUrl: '/images/E4_Lageplan.png',
+			locationHint: 'Ermittler-Mappe',
 			summary:
-					'Zwei Wege sind auf der Karte eingezeichnet: eine helle Bleistift-Route (wie Louise es in ihren Listen notierte) und eine dunkle Tinten-Umleitung (nachträglich ergänzt). Daran erkennt ihr, wer den Vergleich manipulierte.',
+				'Die Route zeigt manipulierte Schulwege. Der Buchstabe "C" ist hier versteckt.',
 			archiveText:
-					"RÄTSEL E4 (Teamaufgabe):\\n1) Acrostic lesen → Wort ergibt Slot 4.\\n2) Kartenaktion: Lege die Ereigniskarte „ADRESSE“ in Slot 4.\\n3) Twist auf der Karte: Findet den Unterschied zwischen der hellen Bleistift-Route (kurz) und der dunklen Tinten-Umleitung (lang).\\n4) Zählt die zusätzlichen Tinten-Abschnitte im Umweg zwischen „Baum“ und „Route“. (Ergebnis = Zahl → dazu passt der Buchstabe fürs Board-Feld „ROUTE“.)\\n5) Adress-Zugang: In der Verdächtigenliste gehört die Person mit „Adressen/Listen/Wegen-Treffen“ zu ID S2. Trage S2 ein.",
-			tags: ['lageplan', 'adresse', 'kehrsatz', 's2'],
+				"Tragt den Buchstaben 'C' im Ermittlungsboard unter ROUTE ein. Vergleicht die Wege mit der Realität.",
+			tags: ['lageplan', 'C']
 		},
 		{
 			id: 'e5',
-			name: 'Beweis E5 – Gartenfund (Teich-Hinweis & Twist)',
-			type: 'Gartenfund',
-			locationHint: 'Unter Stein (bei altem Baum) im Garten',
+			name: 'Beweis E5 – Gartenfund',
+			type: 'Objekt',
+			imageUrl: '/images/E5_Gartenzettel.png',
+			locationHint: 'Im Garten gefunden',
 			summary:
-				'Ein Garten-Zettel: Er zeigt, dass die erste Falschspur nicht stimmt – und er führt zum Teich beim Schulhaus.',
+				'Ein altes Dokument unter dem Kirschbaum. Es enthält das Acrostic „Bei der Schule“ und liefert den Buchstaben "H".',
 			archiveText:
-				"RÄTSEL E5 (Teamaufgabe – im Garten):\n1) Ort-Wort-Acrostic lösen → TEICH.\n2) Twist: Lest/prüft die neue Wahrheit: Max (S3) konnte am Foto-Tag nicht an der Aktenecke arbeiten → Falschspur streichen/entlasten.\n3) Dann zum Teich beim Schulhaus: Setzt das fehlende Foto-Puzzlestück aus E1 ein.\n4) Erst dort erkennt ihr die Heldin/Held (kommt von der Rückseite des Puzzlestücks) → Heldin-ID S5.",
-			tags: ['garten', 'teich', 'twist', 's3-entlastet', 's5']
+				"Dieser Beweis wurde erst im Garten gefunden. Er liefert das 'H' für GARTEN.",
+			tags: ['garten', 'H']
+		},
+		{
+			id: 'e6',
+			name: 'Beweis E6 – Das Finale',
+			type: 'Tagebuch / Foto',
+			imageUrl: '/images/E6_Tagebuch_Clara.png',
+			locationHint: 'Beim Teich gefunden',
+			summary:
+				'Der Tagebucheintrag von Clara Wyss und das fehlende Puzzlestück des Klassenfotos.',
+			archiveText:
+				"Die endgültige Auflösung. Clara Wyss war diejenige, die alles für euch vorbereitet hat.",
+			tags: ['finale', 'clara']
 		}
 	],
 
-		suspects: [
+	suspects: [
 		{
 			id: 's1',
-			name: 'H. Müller',
+			name: 'Heinz Müller',
 			imageUrl: '/images/S1_Herr_H._Mueller.png',
-			role: 'Ex-Schulleiter',
-			access:
-				'Kennt die Schulorganisation und die Aktenlage; wurde am 11. März 1968 gekündigt.',
-			motive:
-				'Er hat die Kündigung erhalten, weil er vermutlich als einziger Lehrer nicht mehr benötigt wurde. Er war auf der anderen Seite einer Machtspaltung in der Gemeinde. Seine Wahl in den Gemeinderat am 01.04.1968 kann als Gegenbewegung gegen die Kündigung interpretiert werden. Einige Beweise wie E2 (Brief an die Gemeinde) und E3 (Protokoll) beinhalten Hinweise auf seinen Plan.',
-			redFlag:
-				'Er kennt die Abläufe, damit Dokumente „offiziell“ wirken.',
+			role: 'Ex-Leiter / Gemeinderat',
+			access: 'Hatte vollen Zugriff auf alle Akten und Stempel (HM).',
+			motive: 'Rache für seine Kündigung; wollte die Schule durch Manipulation schliessen.',
+			redFlag: 'Seine Initialen auf gefälschten Dokumenten.',
 			relief: 'Keine.'
 		},
 		{
@@ -208,121 +186,77 @@ export const caseFile = {
 			name: 'Louise Schmidt',
 			imageUrl: '/images/S2_Louise_Schmidt.png',
 			role: 'Elternvertreterin',
-			access:
-				'Kennt die Elternbriefe und Schulversammlungsprotokolle. Hat den Schulweg berechnet und den "kurzen Durchschnitt" erstellt.',
-			motive:
-				'Sie will sichere Wege und hofft, dass die Gemeinde die Lage „ruhig“ löst.',
-			redFlag:
-				'Ihre Unterlagen passen zu Kehrsatz – darum wirkt sie manchmal „zu nah dran“.',
-			relief: 'Gering.'
+			access: 'Besorgte Mutter, hat Listen von Schulwegen erstellt.',
+			motive: 'Wollte nur das Beste für die Kinder, wurde aber getäuscht.',
+			redFlag: 'Ihre Listen wurden für die Manipulation missbraucht.',
+			relief: 'Sie wusste nichts von der Fälschung.'
 		},
 		{
 			id: 's3',
 			name: 'Max Mustermann',
 			imageUrl: '/images/S3_Max_Mustermann.png',
-			role: 'Schüler-Helfer',
-			access:
-				'Hat Zugang zum Archiv und kennt die Aktenordnung. Wurde aufgrund seiner handschriftlichen Ähnlichkeit mit einem Zettel verdächtigt.',
-			motive:
-				'Max will beweisen, dass er nützlich ist, und würde das Material gerne „verbessern“.',
-			redFlag:
-				'Sein Name/Platz wirkt am Foto „fehlend“ – darum wird er schnell verdächtigt.',
-			relief: 'Gering.'
+			role: 'Archivhelfer',
+			access: 'Hatte Zugang zu den Archivschachteln.',
+			motive: 'Wurde verdächtigt, weil er oft im Archiv war.',
+			redFlag: 'Seine Handschrift ähnelt einer Notiz.',
+			relief: 'E5 beweist sein Alibi.'
 		},
 		{
 			id: 's4',
 			name: 'Susanne Friedli',
 			imageUrl: '/images/S4_Lehrerin_Susanne_Friedli.png',
 			role: 'Lehrerin',
-			access:
-				'Lehrerin in Zimmerwald. Blieb als einzige am Tag der Entscheidung im Schulhaus.',
-			motive:
-				'Sie fürchtet um ihren Arbeitsplatz und möchte eine Lösung, die den Schulbetrieb langfristig sichert.',
-			redFlag:
-				'Sie war als einzige am Tag der Entscheidungsfindung im Schulhaus.',
-			relief: 'Keine.'
+			access: 'War im Schulhaus anwesend.',
+			motive: 'Angst um ihre Stelle.',
+			redFlag: 'War zur Tatzeit im Gebäude.',
+			relief: 'Sie ist unschuldig.'
 		},
 		{
 			id: 's5',
 			name: 'Clara Wyss',
 			imageUrl: '/images/S5_Clara_Wyss.png',
-			role: 'Organisatorin (Widerstand)',
-			access:
-				'Jüngere Lehrerin, Archiv-Assistentin. Sie organisiert die Akten und kennt jede Seite.',
-			motive:
-				'Clara will, dass die Schule in Zimmerwald bleibt – und dass nichts „verschwindet“.',
-			redFlag:
-				'Sie ist schwer greifbar: Man erkennt ihre Rolle erst später.',
-			relief: 'N/A (Der wahre Täter).'
+			role: 'Archiv-Assistentin',
+			access: 'Kannte alle Akten in- und auswendig.',
+			motive: 'Wahrheitsfindung; wollte die Schulverlegung verhindern.',
+			redFlag: 'Sie blieb lange im Hintergrund.',
+			relief: 'Sie ist die Heldin der Geschichte.'
 		},
 		{
 			id: 's6',
 			name: 'Klaus Studerus',
 			imageUrl: '/images/S6_Klaus_Studerus.png',
 			role: 'Gemeindepräsident',
-			access:
-				'Verantwortlich für Finanzen. Er hat die Kontrolle über den gesamten Prozess.',
-			motive:
-				'Er muss die Gemeindefinanzen in den Griff bekommen; massive Einsparungen durch Schulauflösung.',
-			redFlag:
-				'Er hat die Kontrolle über den gesamten Prozess.',
-			relief: 'Entlastet durch das Protokoll vom 14.05.1968: Er war strikt gegen die Auslösung.'
+			access: 'Höchste Instanz.',
+			motive: 'Musste sparen.',
+			redFlag: 'Unterschrieb viele Dokumente.',
+			relief: 'Wurde durch Protokoll E3 entlastet (war gegen Auflösung).'
 		}
 	],
 
-	/**
-	 * Board (Zeitstrahl / Slots)
-	 */
 	timeline: [
 		{
 			id: 't1',
 			year: 1968,
-			label: 'Slot 1 – Der Brief (Spur in den Garten)',
+			label: 'Schritt 1: Initial-Hinweise',
 			description:
-				'Wenn E2 analysiert ist: Lege die Ereigniskarte „BRIEF“ in Slot 1. Notiert „STEIN & BAUM“ – dort liegt E5 im Garten.\n\n[HILFE]: Sucht nach Hinweisen auf einen Ort, der nicht im Gebäude ist.',
-			requiredEvidence: ['e2'],
-			word: 'STEIN',
-			additionalQuestion: 'Welcher Ort wird in E2 erwähnt, der mit dem Garten zusammenhängt?'
+				'Sammelt die Buchstaben aus E1-E4. Ordnet sie auf dem Board zu. Achtet auf "Reihenfolge unklar".',
+			requiredEvidence: ['e1', 'e2', 'e3', 'e4']
 		},
 		{
 			id: 't2',
-			year: 1969,
-			label: 'Slot 2 – Stempel HM (Täter-Check)',
+			year: 1968,
+			label: 'Schritt 2: Der Garten-Code',
 			description:
-				'Wenn E3 analysiert ist: Lege „STEMPEL“ in Slot 2. Entschlüsselt HM → Täter-ID = S1.\n\n[HILFE]: Wer von den Verdächtigen hat Zugang zum Stempel?',
-			requiredEvidence: ['e3'],
-			word: 'HM',
-			additionalQuestion: 'Was bedeutet das Stempel-Symbol HM im Kontext des Falls?'
+				'Nutzt das weisse Blatt mit Löchern aus E2 auf dem Hinweis, um "Kirschbaum Garten" zu finden. Gebt diesen Code im Finale-Tab ein, um E5 freizuschalten.',
+			requiredEvidence: ['e2']
 		},
 		{
 			id: 't3',
-			year: 1969,
-			label: 'Slot 3 – Foto ohne Namen & Falschspur',
+			year: 1968,
+			label: 'Schritt 3: Der Teich-Code',
 			description:
-				'Wenn E1 analysiert ist: Lege „FOTO“ in Slot 3.\n\n[HILFE]: Das Foto ist der Dreh- und Angelpunkt. Fehlt da wirklich jemand oder ist das eine Ablenkung?',
-			requiredEvidence: ['e1'],
-			word: 'DREI',
-			additionalQuestion: 'Welches Wort ergibt sich aus dem Acrostic des Fotos?'
-		},
-		{
-			id: 't4',
-			year: 1970,
-			label: 'Slot 4 – Adresse nach Kehrsatz (Zugang S2)',
-			description:
-				'Wenn E4 analysiert ist: Lege „ADRESSE“ in Slot 4.\n\n[HILFE]: Vergleicht den Plan mit der Liste der Verdächtigen.',
-			requiredEvidence: ['e4'],
-			word: 'BAUM',
-			additionalQuestion: 'Welcher Hinweis im Lageplan zeigt auf den richtigen Weg?'
-		},
-		{
-			id: 't5',
-			year: 1971,
-			label: 'Teich-Fund – letzte Puzzle-Ecke',
-			description:
-				'Wenn E5 analysiert ist (und ihr das Foto aus E1 habt): Geht zum Teich beim Schulhaus. Setzt das fehlende Foto-Puzzlestück ein. Erst dort erkennt ihr die Heldin / den Helden.\n\n[HILFE]: Das letzte Teil des Puzzles ist der Schlüssel zum Abschluss.',
-			requiredEvidence: ['e5', 'e1'],
-			word: 'TEICH',
-			additionalQuestion: 'Welche Person wurde am Ende als Heldin identifiziert?'
+				'Mit dem "H" aus E5 vervollständigt ihr das Wort auf dem Board. Gebt das Lösungswort im Finale-Tab ein, um zum Teich geführt zu werden.',
+			requiredEvidence: ['e5']
 		}
 	],
 
@@ -334,19 +268,23 @@ export const caseFile = {
 			value: 'einsatz-17',
 			accepted: ['einsatz-17', 'einsatz17', 'freigabe17']
 		},
+		e5Unlock: {
+			value: 'Kirschbaum Garten',
+			accepted: ['Kirschbaum Garten', 'Kirschbaumgarten', 'kirschbaum']
+		},
 		finaleUnlock: {
-			value: 'protokoll-komplett',
-			accepted: ['protokoll-komplett', 'protokollkomplett', 'abschluss-17']
+			value: 'Teich bei der Schule',
+			accepted: ['Teich bei der Schule', 'teichschule', 'teich']
 		}
 	},
 
 	finale: {
-		headline: 'Finale am Teich',
+		headline: 'Das Archiv der Wahrheit',
 		fieldInstruction:
-			'Geht als Team zur Teich-Station beim Schulhaus. Dort setzt ihr das fehlende Foto-Puzzlestück aus E1 ein und schaut, wer wirklich geholfen hat (S5). Danach könnt ihr den Finalcode eingeben.',
+			'Hier könnt ihr die geheimen Codes eingeben, um die letzten Beweise freizuschalten.',
 		gmInstruction:
-			'Die Spielleitung übergibt/öffnet den letzten Schritt erst, wenn das Team kurz die Ergebnisse zusammengetragen hat.',
+			'Sobald die Kinder den Fundort im Garten gefunden haben, dürfen sie den Code für E5 eingeben.',
 		resolution:
-			'Der Fall ist abgeschlossen, wenn die Beweiskette stimmig ist: S3 wurde zunächst falsch verdächtigt, aber E5 zeigt die Wahrheit – und S5 (Clara Wyss) hat die Veränderung verhindert. Danke für euren Teamgeist!'
+			'Gratulation! Ihr habt alle Beweise gefunden. Heinz Müller wurde entlarvt, und Clara Wyss ist die Heldin.'
 	}
 };
