@@ -17,6 +17,14 @@ export const caseFile = {
 			'Die 3 Rätsel sind unabhängig vom Fall selbst. Sie testen eure Detektiv-Skills.'
 	},
 
+	visuals: {
+		darkPaperBgUrl: '/images/black-paper-bg.webp',
+		heroDeskUrl: '/images/hero-historical.png',
+		paperGrainUrl: '/images/paper-grain-light.webp',
+		heroCardUrl: '/images/hero-archive.png',
+		fragmentsUrl: '/images/fragments-evidence.webp'
+	},
+
 	parentMode: {
 		accessCode: 'eltern-briefing-17',
 		accepted: ['eltern-briefing-17', 'parent17', 'briefing17']
