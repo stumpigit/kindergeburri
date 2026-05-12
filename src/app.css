@@ -5,18 +5,18 @@
 	--paper: #f3ead8;
 	--paper-ink: #1c1812;
 	--paper-edge: #c4b89a;
-	--accent: #d4a43b;
-	--accent-dim: #9a7429;
-	--accent-glow: rgba(212, 164, 59, 0.22);
-	--signal: #6ecf9c;
-	--signal-dim: rgba(110, 207, 156, 0.18);
-	--warn: #e8c06d;
-	--danger: #e07066;
+	--accent: #8b4513; /* Braun für historischen Stil */
+	--accent-dim: #5d2d0a; /* Dunklerer Braun */
+	--accent-glow: rgba(139, 69, 19, 0.22);
+	--signal: #654321; /* Dunkler Braun */
+	--signal-dim: rgba(101, 67, 33, 0.18);
+	--warn: #d2691e; /* Cinnamon für Warnungen */
+	--danger: #8b0000; /* Dunkelrot für Gefahren */
 	--text: #eef2f7;
 	--text-dim: #b8c0cc;
 	--muted: #7d8795;
 	--border: rgba(255, 255, 255, 0.1);
-	--border-strong: rgba(212, 164, 59, 0.35);
+	--border-strong: rgba(139, 69, 19, 0.35);
 	--radius: 16px;
 	--radius-sm: 10px;
 	--shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
@@ -111,7 +111,7 @@ button:disabled {
 	z-index: -1;
 	/* Unten: Papier-Textur; darüber: leichter Farbton (nicht zu deckend, sonst nur Schwarz) */
 	background:
-		radial-gradient(ellipse 85% 55% at 50% 0%, rgba(212, 164, 59, 0.09), transparent 55%),
+		radial-gradient(ellipse 85% 55% at 50% 0%, rgba(139, 69, 19, 0.09), transparent 55%),
 		linear-gradient(
 			180deg,
 			rgba(8, 10, 14, 0.52) 0%,
@@ -166,11 +166,9 @@ button:disabled {
 	padding: 0.85rem 1rem;
 }
 
-.paper {
-	position: relative;
-	isolation: isolate;
-	overflow: hidden;
-	background: linear-gradient(185deg, #faf6ee 0%, #ebe1cf 100%);
+/* Historische Beweise mit Papier-Texturen */
+.evidence-card {
+	background: linear-gradient(185deg, #f8f4e8 0%, #eae1ce 100%);
 	color: var(--paper-ink);
 	border: 1px solid var(--paper-edge);
 	border-radius: var(--radius-sm);
@@ -178,6 +176,47 @@ button:disabled {
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.35),
 		0 2px 14px rgba(0, 0, 0, 0.12);
+	position: relative;
+	overflow: hidden;
+}
+
+.evidence-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23c4b89a" stroke-width="0.5" opacity="0.1"/></svg>');
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* Historische Verdächtige mit Holzrahmen */
+.suspect-card {
+	background: linear-gradient(185deg, #f8f4e8 0%, #eae1ce 100%);
+	color: var(--paper-ink);
+	border: 1px solid var(--paper-edge);
+	border-radius: var(--radius-sm);
+	padding: 1rem 1.05rem;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.35),
+		0 2px 14px rgba(0, 0, 0, 0.12);
+	position: relative;
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+.suspect-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%238b4513" stroke-width="1" opacity="0.2"/></svg>');
+	pointer-events: none;
+	z-index: 1;
 }
 
 .paper::after {
@@ -215,17 +254,17 @@ button:disabled {
 .badge.ok {
 	background: var(--signal-dim);
 	color: #b8f5d4;
-	border: 1px solid rgba(110, 207, 156, 0.35);
+	border: 1px solid rgba(101, 67, 33, 0.35); /* Dunkler Braun */
 }
 
 .badge.warn {
-	background: rgba(232, 192, 109, 0.14);
+	background: rgba(210, 105, 30, 0.14); /* Cinnamon */
 	color: #ffe6b0;
-	border: 1px solid rgba(232, 192, 109, 0.35);
+	border: 1px solid rgba(210, 105, 30, 0.35); /* Cinnamon */
 }
 
 .badge.accent {
-	background: rgba(212, 164, 59, 0.15);
+	background: rgba(139, 69, 19, 0.15); /* Braun */
 	color: #ffd98a;
 	border: 1px solid var(--border-strong);
 }
@@ -239,9 +278,9 @@ button:disabled {
 	border-radius: 999px;
 	font-weight: 700;
 	border: 1px solid transparent;
-	background: linear-gradient(180deg, #e8bc4e 0%, #c9922e 100%);
-	color: #1a1308;
-	box-shadow: 0 8px 22px rgba(212, 164, 59, 0.25);
+	background: linear-gradient(180deg, #8b4513 0%, #5d2d0a 100%); /* Braun für historischen Stil */
+	color: #fff; /* Weißer Text für Kontrast */
+	box-shadow: 0 8px 22px rgba(139, 69, 19, 0.25);
 	transition:
 		transform 0.12s ease,
 		box-shadow 0.12s ease;
