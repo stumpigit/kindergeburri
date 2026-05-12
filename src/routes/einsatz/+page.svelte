@@ -9,6 +9,11 @@
 	let tab = $state(/** @type {'evidence' | 'suspects' | 'timeline'} */ ('evidence'));
 	let groupLoginInput = $state('');
 	let groupLoginMessage = $state('');
+	let hintStates = $state({}); // Track which hints are active
+
+	function toggleHint(id) {
+		hintStates[id] = !hintStates[id];
+	}
 
 	function tryLogin() {
 		const ok = unlockInvestigation(groupLoginInput);

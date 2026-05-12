@@ -20,6 +20,7 @@
 					<h3>{suspect.name}</h3>
 					<span class="badge muted">{suspect.role}</span>
 				</div>
+				<img src={suspect.imageUrl} alt="{suspect.name}" class="suspect-img" />
 				<p><strong>Zugang:</strong> {suspect.access}</p>
 				<p><strong>Mögliches Motiv:</strong> {suspect.motive}</p>
 				<p><strong>Belastender Punkt:</strong> {suspect.redFlag}</p>
@@ -81,6 +82,13 @@
 	.suspect-head h3 {
 		font-size: 1.05rem;
 		margin: 0;
+	}
+
+	.suspect-img {
+		width: 100%;
+		border-radius: 4px;
+		margin-bottom: 0.5rem;
+		border: 1px solid var(--border-dim);
 	}
 
 	.suspicion {

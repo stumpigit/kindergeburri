@@ -8,6 +8,11 @@
 	} from '$lib/state/progressStore';
 
 	let selectedEvidenceId = $state(caseFile.evidence[0]?.id ?? '');
+	let hintStates = $state({}); // Lokaler State für Hinweise
+
+	function toggleHint(id) {
+		hintStates[id] = !hintStates[id];
+	}
 
 	const selected = $derived(
 		caseFile.evidence.find((item) => item.id === selectedEvidenceId) ?? caseFile.evidence[0]
@@ -56,7 +61,13 @@
 				<p class="summary">{selected.summary}</p>
 				<div class="paper archive-snippet">
 					<h3 class="h3-sm">Archivauszug</h3>
-					<p>{selected.archiveText || selected.insight}</p>
+					{#if hintStates[selected.id]}
+						<p>{selected.archiveText || selected.insight}</p>
+					{:else}
+						<button type="button" class="btn secondary" onclick={() => toggleHint(selected.id)}>
+							Hinweis aktivieren
+						</button>
+					{/if}
 				</div>
 				<div class="detail-actions">
 					<button type="button" class="btn secondary" onclick={() => toggleEvidenceFound(selected.id)}>
