@@ -280,7 +280,9 @@ export const caseFile = {
 			label: 'Slot 1 – Der Brief (Spur in den Garten)',
 			description:
 				'Wenn E2 analysiert ist: Lege die Ereigniskarte „BRIEF“ in Slot 1. Notiert „STEIN & BAUM“ – dort liegt E5 im Garten.\n\n[HILFE]: Sucht nach Hinweisen auf einen Ort, der nicht im Gebäude ist.',
-			requiredEvidence: ['e2']
+			requiredEvidence: ['e2'],
+			word: 'STEIN',
+			additionalQuestion: 'Welcher Ort wird in E2 erwähnt, der mit dem Garten zusammenhängt?'
 		},
 		{
 			id: 't2',
@@ -288,7 +290,9 @@ export const caseFile = {
 			label: 'Slot 2 – Stempel HM (Täter-Check)',
 			description:
 				'Wenn E3 analysiert ist: Lege „STEMPEL“ in Slot 2. Entschlüsselt HM → Täter-ID = S1.\n\n[HILFE]: Wer von den Verdächtigen hat Zugang zum Stempel?',
-			requiredEvidence: ['e3']
+			requiredEvidence: ['e3'],
+			word: 'HM',
+			additionalQuestion: 'Was bedeutet das Stempel-Symbol HM im Kontext des Falls?'
 		},
 		{
 			id: 't3',
@@ -296,7 +300,9 @@ export const caseFile = {
 			label: 'Slot 3 – Foto ohne Namen & Falschspur',
 			description:
 				'Wenn E1 analysiert ist: Lege „FOTO“ in Slot 3.\n\n[HILFE]: Das Foto ist der Dreh- und Angelpunkt. Fehlt da wirklich jemand oder ist das eine Ablenkung?',
-			requiredEvidence: ['e1']
+			requiredEvidence: ['e1'],
+			word: 'DREI',
+			additionalQuestion: 'Welches Wort ergibt sich aus dem Acrostic des Fotos?'
 		},
 		{
 			id: 't4',
@@ -304,7 +310,9 @@ export const caseFile = {
 			label: 'Slot 4 – Adresse nach Kehrsatz (Zugang S2)',
 			description:
 				'Wenn E4 analysiert ist: Lege „ADRESSE“ in Slot 4.\n\n[HILFE]: Vergleicht den Plan mit der Liste der Verdächtigen.',
-			requiredEvidence: ['e4']
+			requiredEvidence: ['e4'],
+			word: 'BAUM',
+			additionalQuestion: 'Welcher Hinweis im Lageplan zeigt auf den richtigen Weg?'
 		},
 		{
 			id: 't5',
@@ -312,7 +320,9 @@ export const caseFile = {
 			label: 'Teich-Fund – letzte Puzzle-Ecke',
 			description:
 				'Wenn E5 analysiert ist (und ihr das Foto aus E1 habt): Geht zum Teich beim Schulhaus. Setzt das fehlende Foto-Puzzlestück ein. Erst dort erkennt ihr die Heldin / den Helden.\n\n[HILFE]: Das letzte Teil des Puzzles ist der Schlüssel zum Abschluss.',
-			requiredEvidence: ['e5', 'e1']
+			requiredEvidence: ['e5', 'e1'],
+			word: 'TEICH',
+			additionalQuestion: 'Welche Person wurde am Ende als Heldin identifiziert?'
 		}
 	],
 
