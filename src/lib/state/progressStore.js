@@ -208,16 +208,42 @@ export function unlockInvestigation(code) {
 	return valid;
 }
 
-/** @param {string} code */
-export function unlockFinale(code) {
-	let valid = false;
-	persist((p) => {
-		valid = checkAnswer(code, caseFile.codes.finaleUnlock.accepted);
-		return {
+/**
+ * @param {string} code
+ * @returns {string|null} 'e5', 'e6', or null
+ */
+export function tryFinaleCode(code) {
+	const normalized = checkAnswer.bind(null, code);
+	
+	// Try E5 unlock
+	if (caseFile.codes.e5Unlock.accepted.some(a => checkAnswer(code, [a]))) {
+		persist((p) => ({
 			...p,
-			finalCodeAttempts: p.finalCodeAttempts + 1,
-			finaleUnlocked: valid ? true : p.finaleUnlocked
-		};
-	});
-	return valid;
+			evidence: {
+				...p.evidence,
+				e5: { ...p.evidence.e5, found: true, analyzed: true }
+			}
+		}));
+		return 'e5';
+	}
+	
+	// Try Finale unlock
+	if (caseFile.codes.finaleUnlock.accepted.some(a => checkAnswer(code, [a]))) {
+		persist((p) => ({
+			...p,
+			evidence: {
+				...p.evidence,
+				e6: { ...p.evidence.e6, found: true, analyzed: true }
+			},
+			finaleUnlocked: true
+		}));
+		return 'e6';
+	}
+	
+	return null;
+}
+
+export function unlockFinale(code) {
+	const result = tryFinaleCode(code);
+	return result !== null;
 }

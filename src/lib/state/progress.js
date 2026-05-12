@@ -25,17 +25,16 @@ export function checkAnswer(userInput, validAnswers) {
 
 /**
  * @param {{
- *   evidence: Array<{ id: string }>;
+ *   evidence: Array<{ id: string; locked?: boolean }>;
  *   suspects: Array<{ id: string }>;
- *   prelude?: { puzzles?: Array<{ id: string }> };
- * }} caseFile
+ *   prelude?: { puzzles?: Array<{ id: string }> };\n * }} caseFile
  */
 export function createDefaultProgress(caseFile) {
 	const evidence = Object.fromEntries(
 		caseFile.evidence.map((item) => [
 			item.id,
 			{
-				found: false,
+				found: !item.locked || false, // E0-E4 unlocked by default
 				analyzed: false,
 				notes: ''
 			}

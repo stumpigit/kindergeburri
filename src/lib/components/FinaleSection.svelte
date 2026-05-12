@@ -1,87 +1,143 @@
 <script>
 	import { caseFile } from '$lib/data/casefile';
-	import { progress, unlockFinale } from '$lib/state/progressStore';
-    import { normalizeAnswer } from '$lib/state/progress';
+	import { progress, tryFinaleCode } from '$lib/state/progressStore';
+	import { normalizeAnswer } from '$lib/state/progress';
+	import EvidenceWorkspace from '$lib/components/EvidenceWorkspace.svelte';
 
 	let code = $state('');
 	let message = $state('');
+	let messageClass = $state('');
+	let showAllEvidence = $state(false);
 
 	function submit() {
-		const normalized = normalizeAnswer(code);
-        
-        // Check for E5 Unlock
-        if (caseFile.codes.e5Unlock.accepted.some(a => normalizeAnswer(a) === normalized)) {
-            $progress.evidence['e5'].found = true;
-            $progress.evidence['e5'].analyzed = true;
-            message = 'Beweis E5 freigeschaltet! Sucht im Garten beim Kirschbaum.';
-            code = '';
-            return;
-        }
+		const result = tryFinaleCode(code);
+		if (result === 'e5') {
+			message = 'E5 freigeschaltet! Sucht den Kirschbaum im Garten und schaut in der Beweisablage nach.';
+			messageClass = 'ok';
+		} else if (result === 'e6') {
+			message = 'E6 freigeschaltet! Der Fall ist gelöst! Schaut in der Beweisablage die letzten Hinweise an.';
+			messageClass = 'ok';
+		} else {
+			message = 'Code nicht korrekt. Prüft eure Notizen und das Aktenblatt.';
+			messageClass = '';
+		}
+		code = '';
+	}
 
-        // Check for Finale Unlock
-		const ok = unlockFinale(code);
-		if (ok) {
-            $progress.evidence['e6'].found = true;
-            $progress.evidence['e6'].analyzed = true;
-            message = 'Finale freigeschaltet! Geht zum Teich bei der Schule.';
-        } else {
-            message = 'Code nicht korrekt. Prüft eure Notizen.';
-        }
+	function toggleAllEvidence() {
+		showAllEvidence = !showAllEvidence;
 	}
 </script>
 
 <section class="finale-root">
 	<div class="section-head">
 		<div>
-			<h2 class="h2-sm">Finale & Geheimcodes</h2>
-			<p class="muted small">Gebt hier eure gefundenen Lösungswörter ein.</p>
+			<h2 class="h2-sm">Geheimcodes eingeben</h2>
+			<p class="muted small">Hier gebt ihr die Lösungswörter ein, um die letzten Beweise freizuschalten.</p>
 		</div>
 		<span class={$progress.finaleUnlocked ? 'badge ok' : 'badge warn'}>
-			{$progress.finaleUnlocked ? 'Abgeschlossen' : 'Ermittlung läuft'}
+			{$progress.finaleUnlocked ? 'Fall gelöst' : 'Ermittlung läuft'}
 		</span>
 	</div>
 
 	<div class="panel finale-unlock grain-overlay">
 		<label class="stack">
-			<span class="label">Lösungswort eingeben</span>
+			<span class="label">Code eingeben</span>
 			<input
 				class="input"
 				type="text"
 				autocomplete="off"
 				bind:value={code}
-				placeholder="z.B. Kirschbaum Garten"
+				placeholder="z.B. Kirschbaum Garten oder TEICH"
 				onkeydown={(e) => e.key === 'Enter' && submit()}
 			/>
 		</label>
 		<button type="button" class="btn" onclick={submit}>Prüfen</button>
-		<p class={$progress.finaleUnlocked ? 'feedback feedback--ok' : 'feedback'}>
-			{message}
+		<p class={messageClass === 'ok' ? 'feedback feedback--ok' : 'feedback'}>
+			{message || 'Tipp: E5 und E6 sind noch gesperrt. Findet die Codes in den Beweisen!'}
 		</p>
 	</div>
 
-    {#if $progress.evidence['e5'].found}
-    <article class="paper finale-brief grain-overlay mb-1">
-		<h3>Beweis E5: Gartenfund</h3>
-		<p>{caseFile.evidence.find(e => e.id === 'e5').summary}</p>
-        <p class="archive-note"><em>{caseFile.evidence.find(e => e.id === 'e5').archiveText}</em></p>
-	</article>
-    {/if}
+	<!-- Status der Codes -->
+	<div class="status-grid">
+		<div class="status-card">
+			<h3>E5 — Gartenfund</h3>
+			{#if $progress.evidence['e5'].found}
+				<p class="badge ok">Freigeschaltet</p>
+			{:else}
+				<p class="badge muted">Gesperrt</p>
+			{/if}
+		</div>
+		<div class="status-card">
+			<h3>E6 — Finale</h3>
+			{#if $progress.evidence['e6'].found}
+				<p class="badge ok">Freigeschaltet</p>
+			{:else}
+				<p class="badge muted">Gesperrt</p>
+			{/if}
+		</div>
+	</div>
 
-	<article class="paper finale-brief grain-overlay">
-		<h3>{caseFile.finale.headline}</h3>
-		<p>{caseFile.finale.fieldInstruction}</p>
-		
-		{#if $progress.finaleUnlocked}
-            <div class="resolution-box">
-                <h4>🎉 Der Fall ist gelöst!</h4>
-    			<p class="resolution">{caseFile.finale.resolution}</p>
-                <hr />
-                <h3>Beweis E6: Die Auflösung</h3>
-                <p>{caseFile.evidence.find(e => e.id === 'e6').summary}</p>
-                <p><em>{caseFile.evidence.find(e => e.id === 'e6').archiveText}</em></p>
-            </div>
+	<!-- E5 sichtbar, wenn freigeschaltet -->
+	{#if $progress.evidence['e5'].found}
+		<article class="paper unlocked-brief grain-overlay">
+			<h3>E5 — Gartenfund</h3>
+			{#if caseFile.evidence.find(e => e.id === 'e5').imageUrl}
+				<img src={caseFile.evidence.find(e => e.id === 'e5').imageUrl} alt="E5" class="evidence-img-inline" />
+			{/if}
+			<p>{caseFile.evidence.find(e => e.id === 'e5').summary}</p>
+			<p class="muted small"><em>{caseFile.evidence.find(e => e.id === 'e5').hintText}</em></p>
+		</article>
+	{/if}
+
+	<!-- E6 + Finale sichtbar, wenn freigeschaltet -->
+	{#if $progress.finaleUnlocked}
+		<article class="paper unlocked-brief grain-overlay">
+			<h3>E6 — Das Finale</h3>
+			{#if caseFile.evidence.find(e => e.id === 'e6').imageUrl}
+				<img src={caseFile.evidence.find(e => e.id === 'e6').imageUrl} alt="E6" class="evidence-img-inline" />
+			{/if}
+			<p>{caseFile.evidence.find(e => e.id === 'e6').summary}</p>
+			<p class="resolution">{caseFile.finale.resolution}</p>
+		</article>
+
+		<div class="final-actions">
+			<button type="button" class="btn secondary" onclick={toggleAllEvidence}>
+				{showAllEvidence ? 'Alle Beweise ausblenden' : 'Alle Beweise anzeigen (Rückblick)'}
+			</button>
+		</div>
+
+		{#if showAllEvidence}
+			<div class="all-evidence-review">
+				<h2 class="h2-sm">Vollständige Fallakte — Übersicht aller Beweise</h2>
+				<p class="muted small">Gratulation! Hier sind alle Beweise des Falls zum Nachlesen.</p>
+				<div class="review-grid">
+					{#each caseFile.evidence as ev}
+						<article class="panel review-card grain-overlay">
+							<h3>{ev.name}</h3>
+							{#if ev.imageUrl}
+								<img src={ev.imageUrl} alt="{ev.name}" class="review-img" />
+							{/if}
+							<p class="summary">{ev.summary}</p>
+						</article>
+					{/each}
+				</div>
+				<!-- Auch alle Verdächtigen zeigen -->
+				<h2 class="h2-sm">Verdächtige — Auflösung</h2>
+				<div class="suspect-summary">
+					{#each caseFile.suspects as sus}
+						<div class="suspect-summary-card">
+							<img src={sus.imageUrl} alt="{sus.name}" class="suspect-thumb" />
+							<div>
+								<h4>{sus.name} — {sus.role}</h4>
+								<p>{sus.motive}</p>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
 		{/if}
-	</article>
+	{/if}
 </section>
 
 <style>
@@ -112,33 +168,116 @@
 		color: var(--text-dim);
 	}
 
-	.finale-brief h3 {
+	.status-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.85rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.status-card {
+		padding: 0.85rem;
+		text-align: center;
+		border-radius: 12px;
+		background: rgba(0, 0, 0, 0.18);
+		border: 1px solid var(--border);
+	}
+
+	.status-card h3 {
+		font-size: 0.95rem;
+		margin: 0 0 0.4rem;
+	}
+
+	.unlocked-brief {
+		padding: 0.85rem;
+		margin-bottom: 1rem;
+	}
+
+	.unlocked-brief h3 {
 		font-size: 1.15rem;
 		margin-bottom: 0.45rem;
 	}
 
-	.finale-brief p {
-		margin: 0 0 0.55rem;
-		color: var(--paper-ink);
+	.unlocked-brief img.evidence-img-inline {
+		max-width: 100%;
+		border-radius: 8px;
+		margin-bottom: 0.5rem;
 	}
-
-    .mb-1 { margin-bottom: 1rem; }
-
-    .archive-note {
-        font-size: 0.9rem;
-        background: rgba(0,0,0,0.05);
-        padding: 0.5rem;
-        border-radius: 4px;
-    }
 
 	.resolution {
 		margin-top: 0.55rem;
+		padding-top: 0.65rem;
+		border-top: 2px solid rgba(29, 26, 20, 0.35);
 		font-weight: 700;
+		font-size: 1.05rem;
 	}
 
-    .resolution-box {
-        border-top: 2px dashed #1d1a14;
-        padding-top: 1rem;
-        margin-top: 1rem;
-    }
+	.final-actions {
+		text-align: center;
+		margin: 1rem 0;
+	}
+
+	.all-evidence-review {
+		margin-top: 1rem;
+	}
+
+	.review-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 0.85rem;
+	}
+
+	.review-card {
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	.review-card h3 {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.review-img {
+		width: 100%;
+		border-radius: 6px;
+	}
+
+	.summary {
+		color: var(--text-dim);
+		font-size: 0.9rem;
+	}
+
+	.suspect-summary {
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.suspect-summary-card {
+		display: grid;
+		grid-template-columns: 64px 1fr;
+		gap: 0.65rem;
+		align-items: center;
+		padding: 0.65rem;
+		border-radius: 8px;
+		background: rgba(0, 0, 0, 0.14);
+		border: 1px solid var(--border);
+	}
+
+	.suspect-summary-card h4 {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.suspect-summary-card p {
+		margin: 0 0 0;
+		font-size: 0.85rem;
+		color: var(--text-dim);
+	}
+
+	.suspect-thumb {
+		width: 64px;
+		height: 64px;
+		object-fit: cover;
+		border-radius: 4px;
+	}
 </style>
