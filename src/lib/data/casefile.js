@@ -18,11 +18,11 @@ export const caseFile = {
 		/** Dunkles zerknülltes Papier – globaler UI-Hintergrund (WebP) */
 		darkPaperBgUrl: '/images/black-paper-bg.webp',
 		/** Schreibtisch / Cold-Case – grosses Hero (WebP aus scripts/optimize-images.mjs) */
-		heroDeskUrl: '/images/hero-historical.svg',
+		heroDeskUrl: '/images/hero-historical.png',
 		/** Helle Papierkörnung – auf Belegkarten (.paper) */
 		paperGrainUrl: '/images/paper-grain-light.webp',
 		/** Archiv / Katalog – zweites Bild im Hero */
-		heroCardUrl: '/images/hero-archive-historical.svg',
+		heroCardUrl: '/images/hero-archive.png',
 		/** Beweise / Tisch – Einladungspaket-Kachel */
 		fragmentsUrl: '/images/fragments-evidence.webp'
 	},
