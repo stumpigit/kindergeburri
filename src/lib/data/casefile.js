@@ -52,33 +52,33 @@ export const caseFile = {
 		puzzles: [
 			{
 				id: 'p1',
-				title: 'Rätsel 1 – Caesar-Chiffre',
-				hint: 'Alphabet um 3 Stellen verschoben: A → D, B → E, …',
-				question: 'Was bedeutet "KDLQ Brx"?',
-				answers: ['Hallo Du', 'HALLO DU', 'Hallo du'],
+				title: 'Rätsel 1 – Ortshinweis',
+				hint: 'Die Lösung ist ein Ort mit Artikel.',
+				question: 'Wo liegt der erste Hinweis?',
+				answers: ['bei der Post', 'Bei der Post', 'BEI DER POST'],
 				source: 'Beleg A1'
 			},
 			{
 				id: 'p2',
-				title: 'Rätsel 2 – Zahlenfolge',
-				hint: 'Jede Zahl ist die Summe der beiden Vorgänger (Fibonacci).',
-				question: 'Welche Zahl kommt als Nächstes? 1, 1, 2, 3, 5, 8, ?',
-				answers: ['13'],
+				title: 'Rätsel 2 – Stichwort',
+				hint: 'Ein einziges Wort aus der Ermittlersprache.',
+				question: 'Welches Stichwort steht auf Beleg A2?',
+				answers: ['Spur', 'SPUR'],
 				source: 'Beleg A2'
 			},
 			{
 				id: 'p3',
-				title: 'Rätsel 3 — Bildcode',
-				hint: 'Das Bild enthält ein verstecktes Wort.',
-				question: 'Welches Wort ist gesucht?',
-				answers: ['EINLADUNG', 'Einladung', 'einladung'],
+				title: 'Rätsel 3 – Abschlusswort',
+				hint: 'Dort liegen die alten Unterlagen.',
+				question: 'Welches Wort öffnet den letzten Teil?',
+				answers: ['Archiv', 'ARCHIV'],
 				source: 'Beleg A3'
 			}
 		],
 		teasers: [
-			{ id: 't1', title: 'Verschlüsselter Gruss', text: 'KDLQ Brx', supportsPuzzleId: 'p1' },
-			{ id: 't2', title: 'Zahlenreihe', text: '1, 1, 2, 3, 5, 8, ?', supportsPuzzleId: 'p2' },
-			{ id: 't3', title: 'Geheimbotschaft', text: 'Bild mit verstecktem Wort', supportsPuzzleId: 'p3' }
+			{ id: 't1', title: 'Beleg A1', text: '… erster Hinweis: bei der Post …', supportsPuzzleId: 'p1' },
+			{ id: 't2', title: 'Beleg A2', text: 'Notiz am Rand: SPUR', supportsPuzzleId: 'p2' },
+			{ id: 't3', title: 'Beleg A3', text: 'Stempelvermerk: Archiv', supportsPuzzleId: 'p3' }
 		],
 		gmNotes: [
 			'Vorrätsel sind warm-up. Lösung: Einladung.',
