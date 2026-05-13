@@ -17,7 +17,7 @@
 	<div class="mission-hero__grid">
 		<div class="mission-hero__copy">
 			<div class="mission-hero__badges">
-				<span class="badge muted">Aktenzeichen {caseFile.id}</span>
+				<span class="badge muted">Aktenzeichen {caseFile.shortTitle}</span>
 				<span class="badge accent">{caseFile.setting.location}</span>
 			</div>
 			<h1 id="mission-title">{caseFile.title}</h1>
@@ -37,7 +37,7 @@
 			<div class="mission-hero__aside-body">
 				<p class="eyebrow">Archiv</p>
 				<p class="strong">Herzlich willkommen im Archiv der Stadt Bern.</p>
-				<p class="tiny muted">Finde hier alles über die Akte Zimmerwald.</p>
+				<p class="tiny muted">Finde hier alles über die Akte-17.</p>
 			</div>
 		</aside>
 	</div>

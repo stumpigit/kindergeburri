@@ -19,11 +19,13 @@
 		href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700&display=swap"
 		rel="stylesheet"
 	/>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" type="image/svg+xml" href={favicon} />
+	<link rel="shortcut icon" href={favicon} />
+	<link rel="apple-touch-icon" href={favicon} />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta
 		name="description"
-		content="Akte Zimmerwald – interaktive Vorermittlung, Einladung und Einsatzakte für den Kindergeburtstag."
+		content="Akte-17 – interaktive Vorermittlung, Einladung und Einsatzakte für den Kindergeburtstag."
 	/>
 	<title>{caseFile.title}</title>
 </svelte:head>

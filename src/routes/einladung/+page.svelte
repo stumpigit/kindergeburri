@@ -1,7 +1,6 @@
 <script>
 	import PreludePuzzleCard from '$lib/components/PreludePuzzleCard.svelte';
 	import { caseFile } from '$lib/data/casefile';
-	import { parentMode } from '$lib/state/parentModeStore';
 	import { progress } from '$lib/state/progressStore';
 import { getSolvedPreludeCount } from '$lib/state/progress';
 
@@ -39,16 +38,6 @@ const need = caseFile.codes.missionUnlock.requiredSolvedPuzzles;
 				{/each}
 			</div>
 
-			{#if $parentMode}
-				<details class="panel gm-notes grain-overlay">
-					<summary>Elternnotizen</summary>
-					<ul>
-						{#each caseFile.prelude.gmNotes as note}
-							<li>{note}</li>
-						{/each}
-					</ul>
-				</details>
-			{/if}
 		{:else}
 			<section class="panel success-banner grain-overlay">
 				<p class="eyebrow success-banner__eyebrow">Geschafft</p>
@@ -125,18 +114,6 @@ const need = caseFile.codes.missionUnlock.requiredSolvedPuzzles;
 		max-width: 60ch;
 	}
 
-	.gm-notes ul {
-		margin: 0.65rem 0 0;
-		padding-left: 1.1rem;
-		color: var(--text-dim);
-		display: grid;
-		gap: 0.35rem;
-	}
-
-	.gm-notes summary {
-		cursor: pointer;
-		font-weight: 800;
-	}
 
 	.briefing-paper h2 {
 		margin: 0 0 0.75rem;

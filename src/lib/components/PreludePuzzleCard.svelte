@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 	import { caseFile } from '$lib/data/casefile';
-	import { parentMode } from '$lib/state/parentModeStore';
 	import { progress, submitPuzzleAttempt } from '$lib/state/progressStore';
 
 	let { puzzle } = $props();
@@ -39,9 +38,6 @@
 		</div>
 	{/if}
 
-	{#if $parentMode}
-		<p class="meta-source muted">Quelle: {puzzle.source}</p>
-	{/if}
 
 	<p class="hint"><strong>Hinweis:</strong> {puzzle.hint}</p>
 	<p class="question">{puzzle.question}</p>
@@ -121,9 +117,6 @@
 		white-space: pre-wrap;
 	}
 
-	.meta-source {
-		font-size: 0.85rem;
-	}
 
 	.hint {
 		font-size: 0.92rem;

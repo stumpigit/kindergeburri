@@ -1,4 +1,4 @@
-# Akte Zimmerwald Webapp (SvelteKit + Docker)
+# Akte-17 Webapp (SvelteKit + Docker)
 
 Interaktive Krimi-Einladung und Ermittlungsplattform für den Kindergeburtstag.
 

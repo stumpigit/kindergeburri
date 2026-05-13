@@ -1,7 +1,6 @@
 <script>
 	import { caseFile } from '$lib/data/casefile';
-	import ParentUnlockBar from '$lib/components/ParentUnlockBar.svelte';
-	import { progress } from '$lib/state/progressStore';
+	import { progress, resetAllProgress } from '$lib/state/progressStore';
 	import { getEvidenceStats, getSolvedPreludeCount } from '$lib/state/progress';
 
 	const denom =
@@ -24,6 +23,12 @@
 			m5: p.finaleUnlocked
 		};
 	}
+
+	function onResetClick() {
+		if (confirm('Alle Rätsel inkl. Einladung wirklich zurücksetzen?')) {
+			resetAllProgress();
+		}
+	}
 </script>
 
 <header class="progress-header" aria-label="Fortschritt und Navigation">
@@ -33,7 +38,7 @@
 		{@const ms = milestones(p)}
 		<a href="/" class="progress-header__brand" data-sveltekit-preload-data="hover">
 			<span class="progress-header__mark" aria-hidden="true"></span>
-			<span class="progress-header__title">{caseFile.id}</span>
+			<span class="progress-header__title">{caseFile.shortTitle}</span>
 		</a>
 
 		<div class="progress-header__track-wrap" title="Gesamtfortschritt: {pct}%">
@@ -58,9 +63,9 @@
 
 		<span class="progress-header__pct" aria-hidden="true">{pct}%</span>
 
-		<div class="progress-header__parent">
-			<ParentUnlockBar variant="header" />
-		</div>
+		<button class="progress-header__reset" type="button" onclick={onResetClick} title="Rätsel und Einladung zurücksetzen">
+			Reset
+		</button>
 	{/if}
 </header>
 
@@ -175,9 +180,23 @@
 		letter-spacing: 0.02em;
 	}
 
-	.progress-header__parent {
-		position: relative;
+	.progress-header__reset {
 		flex-shrink: 0;
-		align-self: center;
+		padding: 0.22rem 0.5rem;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		background: rgba(0, 0, 0, 0.28);
+		font-size: 0.62rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--text-dim);
+		line-height: 1.2;
+		white-space: nowrap;
+	}
+
+	.progress-header__reset:hover {
+		border-color: rgba(232, 188, 78, 0.45);
+		color: rgba(232, 188, 78, 0.95);
 	}
 </style>

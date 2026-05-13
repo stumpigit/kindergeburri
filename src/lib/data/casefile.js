@@ -1,6 +1,7 @@
 export const caseFile = {
-	id: 'akte-zimmerwald',
-	title: 'Akte Zimmerwald – Das Foto ohne Namen',
+	id: 'akte-17',
+	shortTitle: 'Akte-17',
+	title: 'Akte-17: Das Foto ohne Namen',
 	subtitle:
 		'Kinderkrimi mit Vorermittlung (3 Codes) und Einsatzakte (Beweise + Board + Finale)',
 	setting: {
