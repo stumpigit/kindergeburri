@@ -2,7 +2,6 @@
 	import { caseFile } from '$lib/data/casefile';
 	import { progress, tryFinaleCode } from '$lib/state/progressStore';
 	import { normalizeAnswer } from '$lib/state/progress';
-	import EvidenceWorkspace from '$lib/components/EvidenceWorkspace.svelte';
 
 	let code = $state('');
 	let message = $state('');
@@ -12,13 +11,13 @@
 	function submit() {
 		const result = tryFinaleCode(code);
 		if (result === 'e5') {
-			message = 'E5 freigeschaltet! Sucht den Kirschbaum im Garten und schaut in der Beweisablage nach.';
+			message = '✅ E5 freigeschaltet! Sucht im Garten beim Kirschbaum.';
 			messageClass = 'ok';
 		} else if (result === 'e6') {
-			message = 'E6 freigeschaltet! Der Fall ist gelöst! Schaut in der Beweisablage die letzten Hinweise an.';
+			message = '✅ Finale freigeschaltet! Geht zum Teich bei der Schule.';
 			messageClass = 'ok';
 		} else {
-			message = 'Code nicht korrekt. Prüft eure Notizen und das Aktenblatt.';
+			message = 'Code nicht korrekt. Prüft eure Notizen und das Ermittlungsboard.';
 			messageClass = '';
 		}
 		code = '';
@@ -54,7 +53,7 @@
 		</label>
 		<button type="button" class="btn" onclick={submit}>Prüfen</button>
 		<p class={messageClass === 'ok' ? 'feedback feedback--ok' : 'feedback'}>
-			{message || 'Tipp: E5 und E6 sind noch gesperrt. Findet die Codes in den Beweisen!'}
+			{message || 'Tipp: Die Codes findet ihr auf den physischen Beweisen und im Ermittlungsboard.'}
 		</p>
 	</div>
 
@@ -63,17 +62,17 @@
 		<div class="status-card">
 			<h3>E5 — Gartenfund</h3>
 			{#if $progress.evidence['e5'].found}
-				<p class="badge ok">Freigeschaltet</p>
+				<span class="badge ok">Freigeschaltet</span>
 			{:else}
-				<p class="badge muted">Gesperrt</p>
+				<span class="badge muted">Gesperrt</span>
 			{/if}
 		</div>
 		<div class="status-card">
 			<h3>E6 — Finale</h3>
 			{#if $progress.evidence['e6'].found}
-				<p class="badge ok">Freigeschaltet</p>
+				<span class="badge ok">Freigeschaltet</span>
 			{:else}
-				<p class="badge muted">Gesperrt</p>
+				<span class="badge muted">Gesperrt</span>
 			{/if}
 		</div>
 	</div>
@@ -94,7 +93,7 @@
 	{#if $progress.finaleUnlocked}
 		<article class="paper unlocked-brief grain-overlay">
 			<h3>E6 — Das Finale</h3>
-			{#if caseFile.evidence.find(e => e.id === 'e6').imageUrl}
+			{#if caseFile.evidence.find(e => e.id === 'e6')?.imageUrl}
 				<img src={caseFile.evidence.find(e => e.id === 'e6').imageUrl} alt="E6" class="evidence-img-inline" />
 			{/if}
 			<p>{caseFile.evidence.find(e => e.id === 'e6').summary}</p>
@@ -181,11 +180,13 @@
 		border-radius: 12px;
 		background: rgba(0, 0, 0, 0.18);
 		border: 1px solid var(--border);
+		display: grid;
+		gap: 0.4rem;
 	}
 
 	.status-card h3 {
 		font-size: 0.95rem;
-		margin: 0 0 0.4rem;
+		margin: 0;
 	}
 
 	.unlocked-brief {

@@ -208,15 +208,10 @@ export function unlockInvestigation(code) {
 	return valid;
 }
 
-/**
- * @param {string} code
- * @returns {string|null} 'e5', 'e6', or null
- */
+/** @param {string} code */
 export function tryFinaleCode(code) {
-	const normalized = checkAnswer.bind(null, code);
-	
 	// Try E5 unlock
-	if (caseFile.codes.e5Unlock.accepted.some(a => checkAnswer(code, [a]))) {
+	if (code && caseFile.codes.e5Unlock.accepted.some(a => normalizeAnswer(a) === normalizeAnswer(code))) {
 		persist((p) => ({
 			...p,
 			evidence: {
@@ -228,7 +223,7 @@ export function tryFinaleCode(code) {
 	}
 	
 	// Try Finale unlock
-	if (caseFile.codes.finaleUnlock.accepted.some(a => checkAnswer(code, [a]))) {
+	if (code && caseFile.codes.finaleUnlock.accepted.some(a => normalizeAnswer(a) === normalizeAnswer(code))) {
 		persist((p) => ({
 			...p,
 			evidence: {
@@ -243,6 +238,7 @@ export function tryFinaleCode(code) {
 	return null;
 }
 
+/** @param {string} code */
 export function unlockFinale(code) {
 	const result = tryFinaleCode(code);
 	return result !== null;

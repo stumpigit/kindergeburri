@@ -3,8 +3,7 @@
 	import {
 		progress,
 		toggleEvidenceAnalyzed,
-		toggleEvidenceFound,
-		updateEvidenceNotes
+		toggleEvidenceFound
 	} from '$lib/state/progressStore';
 
 	let selectedEvidenceId = $state(caseFile.evidence.find(e => !e.locked)?.id ?? '');
@@ -102,16 +101,9 @@
 						{selectedState.analyzed ? 'Analyse zurücksetzen' : 'Als analysiert markieren'}
 					</button>
 				</div>
-				<label class="notes">
-					<span class="label">Notizen zum Beweis</span>
-					<textarea
-						class="textarea"
-						rows="5"
-						placeholder="Beobachtung, Frage, nächste Aktion"
-						value={selectedState.notes}
-						oninput={(e) => updateEvidenceNotes(selected.id, e.currentTarget.value)}
-					></textarea>
-				</label>
+				<p class="board-redirect muted small">
+					💡 Tragt eure Ermittlungsnotizen direkt ins <a href="/einsatz?tab=board">Ermittlungsboard</a> ein.
+				</p>
 			</article>
 		{/if}
 

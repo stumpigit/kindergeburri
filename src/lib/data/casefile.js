@@ -51,33 +51,33 @@ export const caseFile = {
 		puzzles: [
 			{
 				id: 'p1',
-				title: 'Rätsel 1 – Zahlencode',
-				hint: 'A = 1, B = 2, C = 3, …',
-				question: 'Welches Lösungswort ergibt der Zahlencode 19-16-21-18?',
-				answers: ['Spur'],
+				title: 'Rätsel 1 – Caesar-Chiffre',
+				hint: 'Alphabet um 3 Stellen verschoben: A → D, B → E, …',
+				question: 'Was bedeutet "KDLQ Brx"?',
+				answers: ['Hallo Du', 'HALLO DU', 'Hallo du'],
 				source: 'Beleg A1'
 			},
 			{
 				id: 'p2',
-				title: 'Rätsel 2 – Acrostic',
-				hint: 'Lest die Anfangsbuchstaben jeder Zeile.',
-				question: 'Welches Wort ergibt sich aus den Anfangsbuchstaben?',
-				answers: ['Archiv'],
+				title: 'Rätsel 2 – Zahlenfolge',
+				hint: 'Jede Zahl ist die Summe der beiden Vorgänger (Fibonacci).',
+				question: 'Welche Zahl kommt als Nächstes? 1, 1, 2, 3, 5, 8, ?',
+				answers: ['13'],
 				source: 'Beleg A2'
 			},
 			{
 				id: 'p3',
-				title: 'Rätsel 3 – Spiegelnotiz',
-				hint: 'Schaut doch mal in den Spiegel.',
-				question: 'Welche Aussage findet ihr?',
-				answers: ['Bei der Post'],
+				title: 'Rätsel 3 — Bildcode',
+				hint: 'Das Bild enthält ein verstecktes Wort.',
+				question: 'Welches Wort ist gesucht?',
+				answers: ['EINLADUNG', 'Einladung', 'einladung'],
 				source: 'Beleg A3'
 			}
 		],
 		teasers: [
-			{ id: 't1', title: 'Zahlencode', text: '19-16-21-18', supportsPuzzleId: 'p1' },
-			{ id: 't2', title: 'Hinweise', text: 'Ankunft im Dämmerlicht.\nRänder des Dokuments fehlen.\nCodewörter wurden markiert.\nHinweise liegen zwischen den Zeilen.\nIn den Akten steckt mehr.\nVerdächtige Spuren bleiben offen.', supportsPuzzleId: 'p2' },
-			{ id: 't3', title: 'Spiegelnotiz', text: 'tsoP red ieb', supportsPuzzleId: 'p3' }
+			{ id: 't1', title: 'Verschlüsselter Gruss', text: 'KDLQ Brx', supportsPuzzleId: 'p1' },
+			{ id: 't2', title: 'Zahlenreihe', text: '1, 1, 2, 3, 5, 8, ?', supportsPuzzleId: 'p2' },
+			{ id: 't3', title: 'Geheimbotschaft', text: 'Bild mit verstecktem Wort', supportsPuzzleId: 'p3' }
 		],
 		gmNotes: [
 			'Vorrätsel sind warm-up. Lösung: Einladung.',
@@ -239,49 +239,7 @@ export const caseFile = {
 		}
 	],
 
-	/** === Board (Zeitstrahl / Timeline) === */
-	timeline: [
-		{
-			id: 't1',
-			year: 1968,
-			label: 'Slot 1 – Brief & Garten-Hinweis',
-			description:
-				'Lest E2. Findet den Buchstaben T. Legt das weisse Blatt mit Löchern auf E2 → "Kirschbaum Garten".',
-			requiredEvidence: ['e2']
-		},
-		{
-			id: 't2',
-			year: 1968,
-			label: 'Slot 2 – Protokoll & Stempel HM',
-			description:
-				'Analysiert E3. Der Stempel "HM" verrät den Täter. Findet den Buchstaben E.',
-			requiredEvidence: ['e3']
-		},
-		{
-			id: 't3',
-			year: 1968,
-			label: 'Slot 3 – Foto ohne Namen',
-			description:
-				'Schaut euch E1 genau an. Jemand fehlt auf dem Foto! Findet den Buchstaben I.',
-			requiredEvidence: ['e1']
-		},
-		{
-			id: 't4',
-			year: 1968,
-			label: 'Slot 4 – Lageplan & manipulierte Wege',
-			description:
-				'Vergleicht die Wege auf E4. Wer hat die Karte manipuliert? Findet den Buchstaben C.',
-			requiredEvidence: ['e4']
-		},
-		{
-			id: 't5',
-			year: 1968,
-			label: 'Slot 5 – Gartenfund & Finale',
-			description:
-				'Wenn ihr "Kirschbaum Garten" findet, wird E5 sichtbar. Gebt den Code im Finale-Tab ein!',
-			requiredEvidence: ['e5']
-		}
-	],
+	/** Hinweis: Board ist jetzt TimelineBoard.svelte mit 8 Feldern + 4 Beobachtungen */
 
 	/** === Hinweise für die Webseite (getrennt von Beweisen) === */
 	hints: [
