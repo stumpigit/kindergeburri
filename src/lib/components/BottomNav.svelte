@@ -6,7 +6,6 @@
 		{ href: '/', label: 'Start', icon: '⌂' },
 		{ href: '/einladung', label: 'Einladung', icon: '✉' },
 		{ href: '/einsatz', label: 'Einsatz', icon: '◎' },
-		{ href: '/telefonat', label: 'Telefonat', icon: '☎' },
 		{ href: '/finale', label: 'Finale', icon: '★' }
 	];
 

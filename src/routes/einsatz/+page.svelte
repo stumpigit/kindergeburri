@@ -91,6 +91,14 @@
 			</button>
 		</div>
 
+		<section class="panel grain-overlay phone-hint">
+			<p class="eyebrow">Hinweis</p>
+			<p>
+				Im Fall wird auch ein <strong>Telefonat</strong> erwähnt.
+				<a class="inline-link" href="/telefonat">Hier abhören</a>.
+			</p>
+		</section>
+
 		{#if tab === 'evidence'}
 			<EvidenceWorkspace />
 		{:else if tab === 'suspects'}
@@ -134,5 +142,21 @@
 		font-size: 0.82rem;
 		font-weight: 800;
 		color: var(--text-dim);
+	}
+
+	.phone-hint {
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	.phone-hint p {
+		margin: 0;
+		color: var(--text-dim);
+	}
+
+	.inline-link {
+		color: #ffd98a;
+		text-decoration: underline;
+		text-underline-offset: 3px;
 	}
 </style>
