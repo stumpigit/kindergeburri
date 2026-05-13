@@ -194,6 +194,28 @@ export function updateSuspectNotes(suspectId, notes) {
 	});
 }
 
+/**
+ * @param {string} suspectId
+ * @param {string} field
+ * @param {string} value
+ */
+export function updateSuspectField(suspectId, field, value) {
+	persist((p) => {
+		const current = p.suspects[suspectId];
+		if (!current) return p;
+		return {
+			...p,
+			suspects: {
+				...p.suspects,
+				[suspectId]: {
+					...current,
+					[field]: value
+				}
+			}
+		};
+	});
+}
+
 /** @param {string} code */
 export function unlockInvestigation(code) {
 	let valid = false;

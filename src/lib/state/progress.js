@@ -46,7 +46,10 @@ export function createDefaultProgress(caseFile) {
 			item.id,
 			{
 				suspicion: 2,
-				notes: ''
+				role: '',
+				motive: '',
+				redFlag: '',
+				relief: ''
 			}
 		])
 	);
@@ -145,7 +148,10 @@ export function mergeProgress(base, incoming) {
 					Number.isFinite(suspicion) && suspicion >= 1 && suspicion <= 5
 						? Math.round(suspicion)
 						: merged.suspects[id].suspicion,
-				notes: typeof state.notes === 'string' ? state.notes : merged.suspects[id].notes
+				role: typeof state.role === 'string' ? state.role : merged.suspects[id].role,
+				motive: typeof state.motive === 'string' ? state.motive : merged.suspects[id].motive,
+				redFlag: typeof state.redFlag === 'string' ? state.redFlag : merged.suspects[id].redFlag,
+				relief: typeof state.relief === 'string' ? state.relief : merged.suspects[id].relief
 			};
 		}
 	}

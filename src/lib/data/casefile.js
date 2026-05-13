@@ -173,69 +173,77 @@ export const caseFile = {
 		{
 			id: 's1',
 			name: 'Heinz Müller',
-			role: 'Lehrer / Gemeinderat',
 			imageUrl: '/images/S1_Herr_H._Mueller.png',
-			// Später freischaltbar:
-			motive: 'Rache für Kündigung März 1968. Zugang zu Akten nach Wahl in den Gemeinderat April 1968.',
-			redFlag: 'Stempel "HM" auf Dokumenten (E3)',
-			relief: null,
-			// Erst nach E2 sichtbar:
-			unlockEvidence: null,
-			// Zusatzdokumente:
-			extraInfo: [
-				{ label: 'Kündigung', imageUrl: '/images/S1_Kuendigung_Heinz_Mueller.png' },
-				{ label: 'Gratulation', imageUrl: '/images/S1_Gratulation_Gemeinderat.png' }
-			]
+			solution: {
+				role: 'Lehrer / Gemeinderat',
+				motive: 'Rache für Kündigung März 1968. Zugang zu Akten nach Wahl in den Gemeinderat April 1968.',
+				redFlag: 'Stempel "HM" auf Dokumenten (E3)',
+				relief: null,
+				extraInfo: [
+					{ label: 'Kündigung', imageUrl: '/images/S1_Kuendigung_Heinz_Mueller.png' },
+					{ label: 'Gratulation Gemeinderat', imageUrl: '/images/S1_Gratulation_Gemeinderat.png' }
+				]
+			}
 		},
 		{
 			id: 's2',
 			name: 'Louise Schmidt',
-			role: 'Elternvertreterin',
 			imageUrl: '/images/S2_Louise_Schmidt.png',
-			motive: 'Wollte nur gewissenhaft arbeiten — wurde von Müller manipuliert.',
-			redFlag: 'Ihre Liste wurde für die Schulweg-Manipulation verwendet.',
-			relief: 'Wusste nichts von der Manipulation.',
-			extraInfo: []
+			solution: {
+				role: 'Elternvertreterin',
+				motive: 'Wollte nur gewissenhaft arbeiten — wurde von Müller manipuliert.',
+				redFlag: 'Ihre Liste wurde für die Schulweg-Manipulation verwendet.',
+				relief: 'Wusste nichts von der Manipulation.',
+				extraInfo: []
+			}
 		},
 		{
 			id: 's3',
 			name: 'Max Mustermann',
-			role: 'Schüler / Archivhelfer',
 			imageUrl: '/images/S3_Max_Mustermann.png',
-			motive: 'Kein Motiv — nur Falschspur!',
-			redFlag: '«Max. 6» auf Dokumenten → Name erscheint verdächtig oft.',
-			relief: 'E5 beweist: Am Fototag gar nicht anwesend!',
-			extraInfo: []
+			solution: {
+				role: 'Schüler / Archivhelfer',
+				motive: 'Kein Motiv — nur Falschspur!',
+				redFlag: '«Max. 6» auf Dokumenten → Name erscheint verdächtig oft.',
+				relief: 'E5 beweist: Am Fototag gar nicht anwesend!',
+				extraInfo: []
+			}
 		},
 		{
 			id: 's4',
 			name: 'Susanne Friedli',
-			role: 'Lehrerin',
 			imageUrl: '/images/S4_Lehrerin_Susanne_Friedli.png',
-			motive: 'Angst um ihren Arbeitsplatz.',
-			redFlag: 'War als einzige im Schulhaus am Tag der Entscheidung.',
-			relief: 'Das Foto beweist: Die Heldin ist ein Kind, nicht die Lehrerin.',
-			extraInfo: []
+			solution: {
+				role: 'Lehrerin',
+				motive: 'Angst um ihren Arbeitsplatz.',
+				redFlag: 'War als einzige im Schulhaus am Tag der Entscheidung.',
+				relief: 'Das Foto beweist: Die Heldin ist ein Kind, nicht die Lehrerin.',
+				extraInfo: []
+			}
 		},
 		{
 			id: 's5',
 			name: 'Clara Wyss',
-			role: 'Archiv-Assistentin (Foto zeigt Erwachsene)',
 			imageUrl: '/images/S5_Clara_Wyss.png',
-			motive: 'Wahrheit aufdecken, Schule retten.',
-			redFlag: 'Bleibt anonym und im Hintergrund.',
-			relief: 'E6 enthüllt: 1968 war sie ein SCHULMÄDCHEN! Sie ist die Heldin.',
-			extraInfo: []
+			solution: {
+				role: 'Archiv-Assistentin',
+				motive: 'Wahrheit aufdecken, Schule retten.',
+				redFlag: 'Bleibt anonym und im Hintergrund.',
+				relief: 'E6 enthüllt: 1968 war sie ein SCHULMÄDCHEN! Sie ist die Heldin.',
+				extraInfo: []
+			}
 		},
 		{
 			id: 's6',
 			name: 'Klaus Studerus',
-			role: 'Gemeindepräsident',
 			imageUrl: '/images/S6_Klaus_Studerus.png',
-			motive: 'Musste die Finanzen in Ordnung bringen.',
-			redFlag: 'Verantwortlich für den Beschluss.',
-			relief: 'Protokoll E3: Er war strikt GEGEN die Schulauflösung.',
-			extraInfo: []
+			solution: {
+				role: 'Gemeindepräsident',
+				motive: 'Musste die Finanzen in Ordnung bringen.',
+				redFlag: 'Verantwortlich für den Beschluss.',
+				relief: 'Protokoll E3: Er war strikt GEGEN die Schulauflösung.',
+				extraInfo: []
+			}
 		}
 	],
 
