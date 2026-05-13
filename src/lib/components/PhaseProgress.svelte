@@ -3,8 +3,7 @@
 	import { progress } from '$lib/state/progressStore';
 	import {
 		getEvidenceStats,
-		getSolvedPreludeCount,
-		isTimelineEventUnlocked
+		getSolvedPreludeCount
 	} from '$lib/state/progress';
 
 	const need = caseFile.codes.missionUnlock.requiredSolvedPuzzles;
@@ -15,7 +14,6 @@
 		{@const solved = getSolvedPreludeCount($progress)}
 		{@const invitationOk = solved >= need}
 		{@const ev = getEvidenceStats($progress)}
-		{@const board = caseFile.timeline.filter((e) => isTimelineEventUnlocked($progress, e)).length}
 		{@const pct = Math.round(
 			((ev.analyzed + solved + ($progress.finaleUnlocked ? 1 : 0)) /
 				(caseFile.evidence.length + caseFile.prelude.puzzles.length + 1)) *
@@ -61,12 +59,12 @@
 
 		<div class="mini-stats">
 			<div>
-				<span class="muted">Beweise analysiert</span>
-				<strong>{ev.analyzed}/{ev.total}</strong>
+				<span class="muted">Beweise gefunden</span>
+				<strong>{ev.found}/{ev.total}</strong>
 			</div>
 			<div>
-				<span class="muted">Board-Einträge</span>
-				<strong>{board}/{caseFile.timeline.length}</strong>
+				<span class="muted">Beweise analysiert</span>
+				<strong>{ev.analyzed}/{ev.total}</strong>
 			</div>
 		</div>
 	{/if}

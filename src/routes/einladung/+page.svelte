@@ -3,9 +3,9 @@
 	import { caseFile } from '$lib/data/casefile';
 	import { parentMode } from '$lib/state/parentModeStore';
 	import { progress } from '$lib/state/progressStore';
-	import { getSolvedPreludeCount, isTimelineEventUnlocked } from '$lib/state/progress';
+import { getSolvedPreludeCount } from '$lib/state/progress';
 
-	const need = caseFile.codes.missionUnlock.requiredSolvedPuzzles;
+const need = caseFile.codes.missionUnlock.requiredSolvedPuzzles;
 </script>
 
 <svelte:head>
@@ -16,7 +16,6 @@
 	{#if true}
 		{@const solved = getSolvedPreludeCount($progress)}
 		{@const unlocked = solved >= need}
-		{@const boardOpen = caseFile.timeline.filter((e) => isTimelineEventUnlocked($progress, e)).length}
 
 		<header class="page-title-bar">
 			<div>
@@ -89,8 +88,8 @@
 				<p class="eyebrow">Am Geburtstag</p>
 				<p>
 					Unter <a class="inline-link" href="/einsatz">Einsatz</a> öffnet ihr die Akte mit dem
-					Gruppencode. Board-Stand:
-					<strong>{boardOpen}/{caseFile.timeline.length}</strong>. Das
+					Gruppencode. Im <a class="inline-link" href="/einsatz?tab=board">Board</a> tragt ihr die
+					Buchstaben ein. Das
 					<a class="inline-link" href="/finale">Finale</a> erreicht ihr auch direkt in der
 					Navigation, sobald die Akte aktiv ist.
 				</p>
