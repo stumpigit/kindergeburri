@@ -178,9 +178,9 @@
 	color: var(--text-dim);
 }
 
-.inline-link {
-	color: #ffd98a;
-	text-decoration: underline;
-	text-underline-offset: 3px;
-}
-
+	.inline-link {
+		color: #ffd98a;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+</style>
