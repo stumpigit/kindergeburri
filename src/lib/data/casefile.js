@@ -13,9 +13,9 @@ export const caseFile = {
 	/** === VOR dem Geburtstag: Einladung === */
 	invitation: {
 		headline: 'Willkommen im Ermittler-Team.',
-		message: 'Löst die drei Vorrätsel, um die Einladung für den Einsatztag freizuschalten.',
+		message: 'Löst die drei Einladung-Rätsel, um die Einladungskarte freizuschalten.',
 		tagline:
-			'Die 3 Rätsel sind unabhängig vom Fall selbst. Sie testen eure Detektiv-Skills.'
+			'Die Hinweise sind Teil der Einladung selbst — sie geben den Weg zum Krimi-Geburtstag frei.'
 	},
 
 	visuals: {
@@ -32,7 +32,7 @@ export const caseFile = {
 	},
 
 	invitationKit: [
-		'Einladungskarte mit Link oder QR-Code',
+		'Einladungskarte mit Link',
 		'Beleg A1 als einzelnes Fragment (Start-Papier)',
 		'Kleine Detektiv-Lupe (optional)'
 	],
@@ -43,46 +43,46 @@ export const caseFile = {
 		meetingPoint: 'Treffpunkt bei Familie Suter',
 		dresscode: 'Wetterfest, gute Schuhe',
 		bringAlong: ['Neugier', 'Teamgeist'],
-		unlockNote: 'Wird sichtbar, wenn alle 3 Vorrätsel gelöst sind.'
+		unlockNote: 'Wird sichtbar, wenn alle 3 Einladung-Rätsel gelöst sind.'
 	},
 
-	/** === Vorrätsel (Einladung) === */
+	/** === Einladung (Vor dem Geburtstag) === */
 	prelude: {
-		intro: 'Drei Rätsel. Drei Codes. Eine Einladung.',
+		intro: 'Drei Rätsel. Drei Hinweise. Eine Einladung.',
 		puzzles: [
 			{
 				id: 'p1',
-				title: 'Rätsel 1 – Ortshinweis',
-				hint: 'Die Lösung ist ein Ort mit Artikel.',
-				question: 'Wo liegt der erste Hinweis?',
-				answers: ['bei der Post', 'Bei der Post', 'BEI DER POST'],
-				source: 'Beleg A1'
+				title: 'Rätsel 1 – Zahlencode',
+				hint: 'A = 1, B = 2, ...',
+				question: 'Was bedeutet 19-16-21-18?',
+				answers: ['spur', 'Spur', 'SPUR'],
+				source: 'Einladung'
 			},
 			{
 				id: 'p2',
-				title: 'Rätsel 2 – Stichwort',
-				hint: 'Ein einziges Wort aus der Ermittlersprache.',
-				question: 'Welches Stichwort steht auf Beleg A2?',
-				answers: ['Spur', 'SPUR'],
-				source: 'Beleg A2'
+				title: 'Rätsel 2 – Hinweise',
+				hint: 'Lese nicht von links nach rechts, sondern von oben nach unten.',
+				question: 'Welche Botschaft ergibt sich aus den Zeilen?',
+				answers: ['ARCHIV', 'Archiv', 'archiv'],
+				source: 'Einladung'
 			},
 			{
 				id: 'p3',
-				title: 'Rätsel 3 – Abschlusswort',
-				hint: 'Dort liegen die alten Unterlagen.',
-				question: 'Welches Wort öffnet den letzten Teil?',
-				answers: ['Archiv', 'ARCHIV'],
-				source: 'Beleg A3'
+				title: 'Rätsel 3 — Spiegelnotiz',
+				hint: 'Schaue dich im Spiegel an.',
+				question: 'Welcher Text verbirgt sich in der Notiz?',
+				answers: ['bei der post', 'bei der post', 'beiderpost'],
+				source: 'Einladung'
 			}
 		],
 		teasers: [
-			{ id: 't1', title: 'Beleg A1', text: '… erster Hinweis: bei der Post …', supportsPuzzleId: 'p1' },
-			{ id: 't2', title: 'Beleg A2', text: 'Notiz am Rand: SPUR', supportsPuzzleId: 'p2' },
-			{ id: 't3', title: 'Beleg A3', text: 'Stempelvermerk: Archiv', supportsPuzzleId: 'p3' }
+			{ id: 't1', title: 'Zahlencode', text: '19-16-21-18', supportsPuzzleId: 'p1' },
+			{ id: 't2', title: 'Hinweise', text: 'Ankunft im Dämmerlicht.\nRänder des Dokuments fehlen.\nCodewörter wurden markiert.\nHinweise liegen zwischen den Zeilen.\nIn den Ackten steckt mehr.\nVerdächtige Spuren bleiben offen.', supportsPuzzleId: 'p2' },
+			{ id: 't3', title: 'Spiegelnotiz', text: 'tsoP red ieb', supportsPuzzleId: 'p3' }
 		],
 		gmNotes: [
-			'Vorrätsel sind warm-up. Lösung: Einladung.',
-			'A1 als Papier-Beilage, A2/A3 online.'
+			'Die Einladungsrätsel führen nur zur Einladungskarte.',
+			'Kein Tipptext in der Karte selbst.'
 		]
 	},
 
@@ -254,20 +254,22 @@ export const caseFile = {
 	hints: [
 		{
 			id: 'h1',
-			title: 'Was ist das Aktenblatt?',
+			title: 'Hinweis zum Aktenblatt',
 			text: 'Das Aktenblatt eures Ermittlungsboards hat 8 leere Felder. Tragt die Buchstaben aus den Beweisen ein: FOTO, POST, PROTOKOLL, ROUTE, GARTEN — plus 3 Ablenkungen (ABZUG, GLOCKE, KASSE). Sortiert dann die richtigen 5 Buchstaben!',
 			showAfter: null
 		},
 		{
 			id: 'h2',
-			title: 'Wie findet ihr E5?',
-			text: 'Das weisse Blatt mit 3 Löchern aus E2 auf den Brieffragment legen. Durch die Löcher erscheinen "Hirsch", "Baum" und "Garten". Das Hirsch-Symbol + "H = K" → "Kirschbaum". Sucht den Kirschbaum im Garten!',
+			title: 'Hinweis zum Gartenfund',
+			text: 'Das weisse Blatt mit 3 Löchern auf den Brieffragment legen. Durch die Löcher erscheinen "Hirsch", "Baum" und "Garten". Das Hirsch-Symbol + "H = K" → "Kirschbaum". Sucht den Kirschbaum im Garten!',
 			showAfter: 'e2'
 		},
 		{
 			id: 'h3',
-			title: 'Was macht das Tondokument?',
-			text: 'Hört den Telefonanruf. Müller instruiert Louise, nur Kehrsatz-nahe Schüler einzutragen. Das beweist die Manipulation!',
+			title: 'Hinweis zur Tonspur',
+			text: 'Das Gespräch verrät, wie die Schulwege manipuliert wurden.',
+			href: '/telefonat',
+			linkLabel: 'Tonspur abhören',
 			showAfter: 'e4'
 		}
 	],

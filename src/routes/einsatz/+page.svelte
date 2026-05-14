@@ -92,11 +92,19 @@
 		</div>
 
 		<section class="panel grain-overlay phone-hint">
-			<p class="eyebrow">Hinweis</p>
-			<p>
-				Im Fall wird auch ein <strong>Telefonat</strong> erwähnt.
-				<a class="inline-link" href="/telefonat">Hier abhören</a>.
-			</p>
+			<p class="eyebrow">Hinweise</p>
+			<div class="hint-list">
+				{#each caseFile.hints as hint}
+					<div class="hint-item">
+						<p class="hint-title">{hint.title}</p>
+						<p>{hint.text}</p>
+						{#if hint.href}
+							<p><a class="inline-link" href={hint.href}>{hint.linkLabel}</a></p>
+						{/if}
+					</div>
+				{/each}
+				<p><a class="inline-link" href="/telefonat">Tonspur abhören</a></p>
+			</div>
 		</section>
 
 		{#if tab === 'evidence'}
@@ -144,19 +152,35 @@
 		color: var(--text-dim);
 	}
 
-	.phone-hint {
-		display: grid;
-		gap: 0.4rem;
-	}
+.phone-hint {
+	display: grid;
+	gap: 0.8rem;
+}
 
-	.phone-hint p {
-		margin: 0;
-		color: var(--text-dim);
-	}
+.hint-list {
+	display: grid;
+	gap: 0.8rem;
+}
 
-	.inline-link {
-		color: #ffd98a;
-		text-decoration: underline;
-		text-underline-offset: 3px;
-	}
-</style>
+.hint-item {
+	display: grid;
+	gap: 0.25rem;
+}
+
+.hint-title {
+	margin: 0;
+	font-weight: 800;
+	color: var(--text);
+}
+
+.phone-hint p {
+	margin: 0;
+	color: var(--text-dim);
+}
+
+.inline-link {
+	color: #ffd98a;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+

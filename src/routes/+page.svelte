@@ -41,8 +41,8 @@
 			stehen an:
 		</p>
 		<ol class="flow">
-			<li>Vor dem Geburtstag: drei kurze Codes lösen</li>
-			<li>Einladungsdetails werden automatisch freigeschaltet.</li>
+			<li>Vor dem Geburtstag: drei Einladung-Rätsel lösen</li>
+			<li>Die Einladungskarte wird freigeschaltet.</li>
 			<li>Am Geburtstag: gemeinsam den Gruppencode eingeben und die Akte öffnen.</li>
 		</ol>
 	</section>

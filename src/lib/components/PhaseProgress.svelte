@@ -28,7 +28,7 @@
 				<strong class="pct-value">{pct}<small>%</small></strong>
 			</div>
 		</div>
-		<div class="pill-row pill-row--tracked" aria-label="Vorrätsel">
+		<div class="pill-row pill-row--tracked" aria-label="Einladung-Rätsel">
 			{#each caseFile.prelude.puzzles as p}
 				<span
 					class="puzzle-dot"
@@ -41,7 +41,7 @@
 
 	<div class="phase-row">
 		<div class="phase-card" class:phase-card--active={solved < need}>
-			<span class="phase-card__label">Phase 1 · Vorab</span>
+			<span class="phase-card__label">Phase 1 · Einladung</span>
 			<strong>{solved}/{caseFile.prelude.puzzles.length}</strong>
 			<small>Rätsel</small>
 		</div>
