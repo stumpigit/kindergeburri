@@ -52,7 +52,7 @@ export const caseFile = {
 		puzzles: [
 			{
 				id: 'p1',
-				title: 'Rätsel 1 – Zahlencode',
+				title: 'Rätsel 1: Code-Nr.',
 				hint: 'A = 1, B = 2, ...',
 				question: 'Was bedeutet 19-16-21-18?',
 				answers: ['spur', 'Spur', 'SPUR'],
@@ -60,7 +60,7 @@ export const caseFile = {
 			},
 			{
 				id: 'p2',
-				title: 'Rätsel 2 – Hinweise',
+				title: 'Rätsel 2: Hinweise',
 				hint: 'Lese nicht von links nach rechts, sondern von oben nach unten.',
 				question: 'Welche Botschaft ergibt sich aus den Zeilen?',
 				answers: ['ARCHIV', 'Archiv', 'archiv'],
@@ -68,7 +68,7 @@ export const caseFile = {
 			},
 			{
 				id: 'p3',
-				title: 'Rätsel 3 — Spiegelnotiz',
+				title: 'Rätsel 3: Spiegelnotiz',
 				hint: 'Schaue dich im Spiegel an.',
 				question: 'Welcher Text verbirgt sich in der Notiz?',
 				answers: ['bei der post', 'bei der post', 'beiderpost'],

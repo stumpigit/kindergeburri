@@ -20,10 +20,8 @@
 				<span class="badge muted">Aktenzeichen {caseFile.shortTitle}</span>
 				<span class="badge accent">{caseFile.setting.location}</span>
 			</div>
-			<h1 id="mission-title">{caseFile.title}</h1>
-			<p class="subtitle">{caseFile.subtitle}</p>
-			<p class="lede">{caseFile.invitation.message}</p>
-			<p class="tagline">{caseFile.invitation.tagline}</p>
+			<h1 id="mission-title">Herzlich willkommen zum Geburtstagskrimi von Flurina</h1>
+			<p class="lede">Du bist im Entwicklerteam dabei! Löse nun die drei Rätsel der Einladungskarte, um alle Details der Party zu erfahren.</p>
 			<div class="mission-hero__cta">
 				<a class="btn" href="/einladung">Zur Einladung</a>
 				<a class="btn secondary" href="/einsatz">Einsatzakte</a>

@@ -24,7 +24,7 @@
 
 <article class="code-entry panel grain-overlay" id={`riddle-${puzzle.id}`}>
 	<div class="code-entry__head">
-		<h2>Code-Nr. {puzzle.id.replace('p', '')}</h2>
+		<h2>{puzzle.title}</h2>
 		{#if $progress.prelude[puzzle.id]?.solved}
 			<span class="badge ok">Gelöst</span>
 		{:else}
