@@ -39,10 +39,10 @@ export const caseFile = {
 
 	birthdayBriefing: {
 		dateLabel: 'Einsatztag',
-		dateValue: 'Samstag, 17. Mai, 14 Uhr (siehe Einladungs-Link)',
+		dateValue: 'Freitag, 29. Mai, 13:30 Uhr',
 		meetingPoint: 'Treffpunkt bei Familie Suter',
-		dresscode: 'Wetterfest, gute Schuhe',
-		bringAlong: ['Neugier', 'Teamgeist'],
+		dresscode: 'Wetterfeste Kleidung, Velo',
+		bringAlong: ['Neugier', 'Teamgeist','Detektivgespür'],
 		unlockNote: 'Wird sichtbar, wenn alle 3 Einladung-Rätsel gelöst sind.'
 	},
 
