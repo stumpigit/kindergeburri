@@ -1,5 +1,5 @@
 <script>
-	import PreludePuzzleCard from '$lib/components/PreludePuzzleCard.svelte';
+	import CodeEntry from '$lib/components/CodeEntry.svelte';
 	import { caseFile } from '$lib/data/casefile';
 	import { progress } from '$lib/state/progressStore';
 import { getSolvedPreludeCount } from '$lib/state/progress';
@@ -34,7 +34,7 @@ const need = caseFile.codes.missionUnlock.requiredSolvedPuzzles;
 		{#if !unlocked}
 			<div class="puzzle-stack">
 				{#each caseFile.prelude.puzzles as puzzle}
-					<PreludePuzzleCard {puzzle} />
+					<CodeEntry {puzzle} />
 				{/each}
 			</div>
 

@@ -35,16 +35,13 @@
 			role="img"
 			aria-label="Collage aus Aktenfragmenten"
 		></div>
-		<h2>{caseFile.invitation.headline}</h2>
+		<h2>Herzlich willkommen zum Geburtstagskrimi von Flurina</h2>
 		<p class="muted">
-			Herzliche Gratulation! Du wurdest erfolgreich im Ermittlungsteam aufgenommen. Folgende Aufgaben
-			stehen an:
+			Um all Details für die Geburtstagseinladung freizuschalten, gebt hier die Lösungsworte zu den
+			Rätseln auf der Einladungskarte ein. Klickt dafür hier auf &quot;Zur Einladung&quot; um die
+			Lösungsworte einzugeben. Es gibt zu den Rätseln dort auch Tipps.
 		</p>
-		<ol class="flow">
-			<li>Vor dem Geburtstag: drei Einladung-Rätsel lösen</li>
-			<li>Die Einladungskarte wird freigeschaltet.</li>
-			<li>Am Geburtstag: gemeinsam den Gruppencode eingeben und die Akte öffnen.</li>
-		</ol>
+		<a href="/einladung" class="btn" style="margin-top: 0.5rem; text-decoration: none;">Zur Einladung</a>
 	</section>
 
 </main>

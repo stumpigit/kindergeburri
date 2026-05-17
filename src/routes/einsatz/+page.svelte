@@ -53,7 +53,7 @@
 						type="text"
 						autocomplete="off"
 						bind:value={groupLoginInput}
-						placeholder="z.B. einsatz-17"
+						placeholder="z.B. toller-Geburtstag"
 						onkeydown={(e) => e.key === 'Enter' && tryLogin()}
 					/>
 				</label>
